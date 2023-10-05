@@ -31,21 +31,21 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
 ```
 - Update the [inventories/group_vars/all/vars](inventories/group_vars/all/vars) file
 
-## Requirements
-- To setup the Ansible control node.
-python3 + pip or poetry
-sudo apt install sshpass
+## Requirements
+- To setup the Ansible control node:
+    - `python3 + pip or poetry`
+    - `sudo apt install sshpass`
 
 ## TO-DO
 - Role ubuntu
-    - Create groups
-    - Create users
-    - Create SSH File
-    - Add SSH Authorized
-    - Update APT
-    - Install Apps
+    - Create groups (Done)
+    - Create users (Done)
+    - Create SSH File (Done)
+    - Add SSH Authorized (Done)
+    - Update APT 
+    - Install Apps (Done)
 - Configure and test pre-commit
-- Add syntax higlihhting vscode
+- Add syntax higlihting vscode
 - Test ansible-lint in vscode (Suppose to come wit the Ansible extension)
 - Docs for the role
     - The role expected the ssh_key to match the name of the username. Exampel user: dmac and pub key dmac.pub
