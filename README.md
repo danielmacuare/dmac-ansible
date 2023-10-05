@@ -5,7 +5,20 @@ The purpose of this repo is to store a collection of commonly used Ansible playb
 
 
 ## How to use
-- Generate password for users:
+
+### Generate password for users:
+#### Method 1 (mkpasswd utility)
+```bash
+sudo apt install whois
+mkpasswd
+
+Password:
+$y$j9T$ugEXXXflDJbz.yBSt4qm3/$9xnQ9gTo2FBvF7vcuEb8QklB7twM/oZwM7bxB1Y54HA
+
+ssh_pass: "$y$j9T$ugEXXXflDJbz.yBSt4qm3/$9xnQ9gTo2FBvF7vcuEb8QklB7twM/oZwM7bxB1Y54HA"
+```
+
+#### Method 2 (Python)
 ``` python
 poetry add passlib or pip install passlib
 python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
@@ -15,8 +28,8 @@ $6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkRwSgwWNT/3Pb
 
 
 ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkRwSgwWNT/3Pbic0Z2gZs4mW6jQPviosCBdmwJ."
-
 ```
+- Update the [inventories/group_vars/all/vars](inventories/group_vars/all/vars) file
 
 ## Requirements
 - To setup the Ansible control node.
