@@ -1,0 +1,16 @@
+---
+auth_key_dir: "{{ vault_auth_dir_key }}"
+
+users:
+  - username: dmac
+    use_sudo: true
+    ssh_access: true
+    ssh_pub_key: "{{ lookup('file', 'dmac.pub') }}"
+    ssh_pass: "{{ vault_dmac_ssh_pass }}"
+
+apt_packages:
+  - neovim
+  - whois
+  - ctop
+  - sshpass
+  - nmap

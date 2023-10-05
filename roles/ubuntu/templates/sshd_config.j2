@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+ListenAddress 0.0.0.0 
+PermitRootLogin no
+PubkeyAuthentication yes
+AuthorizedKeysFile {{ auth_key_dir }}/%u.pub
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+UsePAM no
+UseDNS no
+Subsystem sftp /usr/lib/openssh/sftp-server

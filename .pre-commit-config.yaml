@@ -1,0 +1,11 @@
+---
+repos:
+  - repo: https://github.com/ansible/ansible-lint.git
+    rev: v6.20.3
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+        name: Running Ansible Lint
+        description: run configurations on .ansible-lint file
+        verbose: true
+        # args: [-p, ./ansible/*]

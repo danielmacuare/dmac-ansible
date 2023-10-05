@@ -1,0 +1,52 @@
+---
+- name: "CREATING - groups for users"
+  become: true
+  ansible.builtin.group:
+    name: "{{ item.username }}"
+    state: present
+  with_items: "{{ users }}"
+  loop_control:
+    label: "Creating Group: {{ item.username }}"
+
+- name: "CREATING - users"
+  become: true
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    state: present
+    password: "{{ item.ssh_pass }}"
+    shell: /bin/bash
+    group: "{{ item.username }}"
+  with_items: "{{ users }}"
+  loop_control:
+    label: "Creating User: {{ item.username }}"
+
+- name: 'VALIDATING - Auth Key Dir is created: "{{ auth_key_dir }}"'
+  become: true
+  ansible.builtin.file:
+    state: directory
+    path: "{{ auth_key_dir }}/"
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: "MOVING - Users' keys to {{ auth_key_dir }}"
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item.username }}.pub"
+    dest: "{{ auth_key_dir }}/"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ users }}"
+
+- name: CREATING - SSHD Config file
+  become: true
+  ansible.builtin.template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    backup: true
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - "restart sshd"

@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "dmac-ansible"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Macuare"]
+readme = "README.md"
+packages = [{include = "dmac_ansible"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ansible = "^8.4.0"
+passlib = "^1.7.4"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.4.0"
+ansible-lint = { version = "^6.20.1", markers = "platform_system != 'Windows'" }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

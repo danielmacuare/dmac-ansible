@@ -1,0 +1,6 @@
+---
+- name: Test
+  hosts: leny_01
+  gather_facts: true
+  roles:
+    - {role: ubuntu, tags: ['ubuntu']}

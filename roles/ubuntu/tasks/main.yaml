@@ -1,0 +1,9 @@
+# Create users
+# Creae Groups
+# Install Apps
+# Tested on Ubuntu 22.04.3
+
+---
+- name: "Including Task: Users.yaml"
+  ansible.builtin.include_tasks: users.yaml
+  when: "users is defined"

@@ -1,0 +1,7 @@
+---
+- name: "HANDLER - Restart the SSHD Service"
+  become: true
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
+  listen: "restart sshd"
