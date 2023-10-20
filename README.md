@@ -3,8 +3,32 @@ The purpose of this repo is to store a collection of commonly used Ansible playb
 
 ## Links
 
+## Notes
+- TO BE FIXED: In the group_vars/all/vars file all the usernames and ssh_pub_key names should match. Example
+```yaml
+users:
+  - username: dmac
+    sudo_access: true
+    ssh_access: true
+    ssh_pub_key: "{{ lookup('file', 'dmac.pub') }}"
+    ssh_pass: "{{ vault_dmac_ssh_pass }}"
+```
+
 
 ## How to use
+- On my local machine: 
+```bash
+ssh-ass ~/.ssh/dmac
+ssh dock01
+```
+- On dock01
+```bash
+cd repos/dmac-ansible
+source .venv/bin/activate
+ansible-playbook playbooks/ubuntu.yml -K
+
+```
+
 
 ### Generate password for users:
 #### Method 1 (mkpasswd utility)
@@ -50,3 +74,4 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
 - Docs for the role
     - The role expected the ssh_key to match the name of the username. Exampel user: dmac and pub key dmac.pub
 - pre-commit hook to avoid leaking vault files unencrypted
+- 

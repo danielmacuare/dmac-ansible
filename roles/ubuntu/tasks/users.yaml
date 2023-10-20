@@ -50,3 +50,11 @@
     mode: "0644"
   notify:
     - "restart sshd"
+
+- name: Add to sudoers
+  become: true
+  template:
+    src: "sudoers.j2"
+    dest: "/etc/sudoers.d/sudo-{{ item.username }}"
+  loop: "{{ users }}"
+  when: item.ssh_access
