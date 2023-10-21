@@ -53,8 +53,11 @@
 
 - name: "ADDING - sudo users to the Sudoers file"
   become: true
-  template:
+  ansible.builtin.template:
     src: "sudoers.j2"
     dest: "/etc/sudoers.d/sudo-{{ item.username }}"
+    owner: root
+    group: root
+    mode: "0440"
   loop: "{{ users }}"
   when: item.ssh_access
