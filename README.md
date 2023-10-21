@@ -66,9 +66,13 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
     - Create users (Done)
     - Create SSH File (Done)
     - Add SSH Authorized (Done)
-    - Update APT 
+    - Update APT (Done)
     - Install Apps (Done)
-- Configure and test pre-commit
+    - Add Aliases "~/.aliases"
+    - Add functions "~/.custom_functions"
+- Role ZSH
+    - Install ZSH
+- Configure and test pre-commit (Done)
 - Add syntax higlihting vscode
 - Test ansible-lint in vscode (Suppose to come wit the Ansible extension)
 - Docs for the role
