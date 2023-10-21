@@ -1,7 +1,7 @@
 ---
 - name: "INSTALLING - APT Packages"
   become: true
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   loop: "{{ apt_packages }}"
