@@ -18,7 +18,7 @@ users:
 ## How to use
 - On my local machine: 
 ```bash
-ssh-ass ~/.ssh/dmac
+ssh-add ~/.ssh/dmac
 ssh dock01
 ```
 - On dock01

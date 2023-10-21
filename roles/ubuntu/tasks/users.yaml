@@ -39,7 +39,7 @@
     mode: "0644"
   loop: "{{ users }}"
 
-- name: CREATING - SSHD Config file
+- name: "CREATING - SSHD Config file"
   become: true
   ansible.builtin.template:
     src: sshd_config.j2
@@ -51,7 +51,7 @@
   notify:
     - "restart sshd"
 
-- name: Add to sudoers
+- name: "ADDING - sudo users to the Sudoers file"
   become: true
   template:
     src: "sudoers.j2"
