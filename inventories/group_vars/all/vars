@@ -18,3 +18,4 @@ apt_packages:
   - sshpass
   - nmap
   - lsd
+  - bat
