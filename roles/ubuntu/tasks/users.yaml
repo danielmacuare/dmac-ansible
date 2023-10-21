@@ -66,7 +66,7 @@
   become: true
   ansible.builtin.template:
     src: "{{ item.custom_alias_file }}"
-    dest: "/home/{{ item.username}}/.aliases"
+    dest: "/home/{{ item.username }}/.aliases"
     owner: "{{ item.username }}"
     group: "{{ item.username }}"
     mode: "0644"
@@ -77,7 +77,7 @@
   become: true
   ansible.builtin.template:
     src: "{{ item.custom_functions_file }}"
-    dest: "/home/{{ item.username}}/.custom_functions"
+    dest: "/home/{{ item.username }}/.custom_functions"
     owner: "{{ item.username }}"
     group: "{{ item.username }}"
     mode: "0644"
