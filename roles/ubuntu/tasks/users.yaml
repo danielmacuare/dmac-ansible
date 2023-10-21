@@ -60,4 +60,26 @@
     group: root
     mode: "0440"
   loop: "{{ users }}"
-  when: item.ssh_access
+  when: item.ssh_access is defined
+
+- name: "ADDING - Custom Alias File"
+  become: true
+  ansible.builtin.template:
+    src: "{{ item.custom_alias_file }}"
+    dest: "/home/{{ item.username}}/.aliases"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: "0644"
+  loop: "{{ users }}"
+  when: item.custom_alias_file is defined
+
+- name: "ADDING - Custom Functions File"
+  become: true
+  ansible.builtin.template:
+    src: "{{ item.custom_functions_file }}"
+    dest: "/home/{{ item.username}}/.custom_functions"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: "0644"
+  loop: "{{ users }}"
+  when: item.custom_functions_file is defined

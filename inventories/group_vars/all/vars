@@ -7,6 +7,8 @@ users:
     ssh_access: true
     ssh_pub_key: "{{ lookup('file', 'dmac.pub') }}"
     ssh_pass: "{{ vault_dmac_ssh_pass }}"
+    custom_alias_file: "aliases_dmac.j2"
+    custom_functions_file: "functions_dmac.j2"
 
 
 apt_packages:
