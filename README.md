@@ -70,7 +70,6 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
     - Install Apps (Done)
     - Add Aliases "~/.aliases" (Done)
     - Add functions "~/.custom_functions" (Done)
-- Fix Installation of LSD Package
 - Role ZSH
     - Install ZSH
 - Configure and test pre-commit (Done)

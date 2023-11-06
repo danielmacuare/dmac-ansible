@@ -1,0 +1,16 @@
+---
+- name: UPDATING - Package cache
+  become: true
+  ansible.builtin.package:
+    update_cache: true
+  when: ansible_os_family != 'Darwin'
+
+- name: INSTALLING - ZSH dependencies
+  become: "{{ ansible_facts.distribution != 'MacOSX' }}"
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ zsh_dependencies }}"
+  loop_control:
+    label: "Installing ZSH Dependencie: {{ item }}"
+  when: not ansible_os_family == "Darwin"
