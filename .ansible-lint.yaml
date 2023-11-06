@@ -18,8 +18,9 @@ exclude_paths:
   - .gitignore
   - .poetry.lock
   - .pyproject.toml
-# parseable: true
-# quiet: true
+
+parseable: true
+quiet: true
 # strict: true
 # verbosity: 1
 
