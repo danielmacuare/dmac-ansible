@@ -17,5 +17,9 @@ apt_packages:
   - ctop
   - sshpass
   - nmap
-  - lsd
   - bat
+
+snap_packages:
+  - name: zerotier
+    classic: true
+    version: "latest/stable"

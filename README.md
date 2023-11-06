@@ -15,7 +15,7 @@ users:
 ```
 
 
-## How to use
+## How to use
 - On my local machine: 
 ```bash
 ssh-add ~/.ssh/dmac
