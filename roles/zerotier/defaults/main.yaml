@@ -1,0 +1,5 @@
+---
+# defaults file for ansible-role-zerotier. Users can overrride these defaults
+zerotier_api_url: "https://api.zerotier.com/api/v1/"
+zerotier_api_delegate: localhost
+zerotier_authorize_member: true

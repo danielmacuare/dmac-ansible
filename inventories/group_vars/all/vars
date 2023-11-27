@@ -28,6 +28,11 @@ apt_packages:
   - nala
 
 snap_packages:
-  - name: zerotier
+  - name: spt
     classic: true
     version: "latest/stable"
+
+# Zerotier
+zerotier_api_accesstoken: "{{ vault_zerotier_api_accesstoken }}"
+zerotier_api_url: "https://api.zerotier.com/api/v1"
+zerotier_network_id: "83048a0632608eee"
