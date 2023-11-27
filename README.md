@@ -16,7 +16,15 @@ users:
 
 
 ## How to use
-- On my local machine: 
+
+### Pre-requisites
+- Add a file with a password to decrypt Vault variables on the following path `~/.vault_pass`. This is controlled by the `ansible.cfg` file.
+- Enable your virtualenvironment (VIa pip or Poetry)
+- Install all python dependencies
+- Modify the ansible inventory with your user
+
+
+### Using this project
 ```bash
 ssh-add ~/.ssh/dmac
 ssh dock01
@@ -70,7 +78,14 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
     - Install Apps (Done)
     - Add Aliases "~/.aliases" (Done)
     - Add functions "~/.custom_functions" (Done)
-- Fix Installation of LSD Package
+- Installing SNAP
+    - Example role1: https://github.com/m4rcu5nl/ansible-role-zerotier
+    - Exmaple Role 2: https://gitlab.com/tobkern1980/ansible-role-zerotierone/-/tree/master/tasks?ref_type=heads
+    - Installing Zerotier (Done)
+    - Enabling to survive a restart
+    - Authorize_node
+    - Join_network
+- pre-commit script to make sure all your vault files are encrypted before committing.
 - Role ZSH
     - Install ZSH
 - Configure and test pre-commit (Done)

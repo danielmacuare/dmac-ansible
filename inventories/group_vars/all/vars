@@ -9,7 +9,13 @@ users:
     ssh_pass: "{{ vault_dmac_ssh_pass }}"
     custom_alias_file: "aliases_dmac.j2"
     custom_functions_file: "functions_dmac.j2"
-
+  - username: svmt
+    sudo_access: true
+    ssh_access: true
+    ssh_pub_key: "{{ lookup('file', 'svmt.pub') }}"
+    ssh_pass: "{{ vault_svmt_ssh_pass }}"
+    custom_alias_file: "aliases_svmt.j2"
+    custom_functions_file: "functions_svmt.j2"
 
 apt_packages:
   - neovim
