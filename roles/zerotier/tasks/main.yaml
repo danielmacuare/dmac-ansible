@@ -1,0 +1,19 @@
+---
+- name: "Including Task: install.yaml"
+  ansible.builtin.include_tasks: install.yaml
+
+- name: Writing Zerotier Node Data to Ansible Facts
+  block:
+    - name: "Update ansible_local facts"
+      become: true
+      ansible.legacy.script: set_facts.sh
+
+    - name: "Re-gather ansible_local facts"
+      ansible.legacy.setup:
+        filter: ansible_local
+
+- name: "Including Task: authorize_node.yaml"
+  ansible.builtin.include_tasks: authorize_node.yaml
+  when:
+    - zerotier_api_accesstoken | length > 0
+    - ansible_local['zerotier']['node_id'] is defined
