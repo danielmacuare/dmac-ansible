@@ -1,0 +1,11 @@
+---
+- name: "INSTALLING - SNAP Packages"
+  become: true
+  community.general.snap:
+    name: "{{ item.name }}"
+    state: present
+    classic: "{{ item.classic }}"
+    channel: "{{ item.version }}"
+  loop: "{{ snap_packages }}"
+  loop_control:
+    label: "Install SNAP Package: {{ item }}"

@@ -7,6 +7,11 @@
 - name: "Including Task: users.yaml"
   ansible.builtin.include_tasks: users.yaml
   when: "users is defined"
+
 - name: "Including Task: apt_packages.yaml"
   ansible.builtin.include_tasks: apt_packages.yaml
   when: "apt_packages is defined"
+
+- name: "Including Task: snap_packages.yaml"
+  ansible.builtin.include_tasks: snap_packages.yaml
+  when: "snap_packages is defined"

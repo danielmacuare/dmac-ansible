@@ -1,0 +1,5 @@
+ansible-lint
+dj-lint
+pre-commit
+ansible
+passlib
