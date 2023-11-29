@@ -20,7 +20,7 @@ exclude_paths:
   - .pyproject.toml
 
 parseable: true
-quiet: true
+quiet: false
 # strict: true
 # verbosity: 1
 

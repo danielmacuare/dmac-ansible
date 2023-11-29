@@ -78,20 +78,21 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
     - Install Apps (Done)
     - Add Aliases "~/.aliases" (Done)
     - Add functions "~/.custom_functions" (Done)
-- Installing SNAP
+- Installing SNAP (Done)
+- ZeroTier Role (Done)
     - Example role1: https://github.com/m4rcu5nl/ansible-role-zerotier
     - Exmaple Role 2: https://gitlab.com/tobkern1980/ansible-role-zerotierone/-/tree/master/tasks?ref_type=heads
     - Installing Zerotier (Done)
-    - Enabling to survive a restart
-    - Authorize_node
-    - Join_network
-- pre-commit script to make sure all your vault files are encrypted before committing.
+    - Enabling to survive a restart 
+    - Authorize_node (Done)
+    - Join_network (Done)
 - Role ZSH
-    - Install ZSH
+    - Install ZSH (Done)
+    - Install Oh-my-ZSH (Done)
+    - Install Powerlevel10K ZSH Theme
 - Configure and test pre-commit (Done)
 - Add syntax higlihting vscode
 - Test ansible-lint in vscode (Suppose to come wit the Ansible extension)
 - Docs for the role
     - The role expected the ssh_key to match the name of the username. Exampel user: dmac and pub key dmac.pub
-- pre-commit hook to avoid leaking vault files unencrypted
-- 
+- pre-commit script to make sure all your vault files are encrypted before committing.

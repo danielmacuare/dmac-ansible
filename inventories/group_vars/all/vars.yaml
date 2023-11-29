@@ -9,6 +9,7 @@ users:
     ssh_pass: "{{ vault_dmac_ssh_pass }}"
     custom_alias_file: "aliases_dmac.j2"
     custom_functions_file: "functions_dmac.j2"
+    # ZSH ROLE
   - username: svmt
     sudo_access: true
     ssh_access: true
@@ -32,7 +33,18 @@ snap_packages:
     classic: true
     version: "latest/stable"
 
-# Zerotier
+# Zerotier Role
 zerotier_api_accesstoken: "{{ vault_zerotier_api_accesstoken }}"
 zerotier_api_url: "https://api.zerotier.com/api/v1"
 zerotier_network_id: "83048a0632608eee"
+
+zsh_users:
+  - username: dmac
+    oh_my_zsh:
+      # theme: robbyrussell
+      theme: "powerlevel10k/powerlevel10k"
+      plugins:
+        - git
+      update_mode: auto
+      update_frequency: 5
+      write_zshrc: false

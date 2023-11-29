@@ -1,0 +1,72 @@
+---
+- name: UPDATING - Package cache
+  become: true
+  ansible.builtin.package:
+    update_cache: true
+  when: ansible_os_family != 'Darwin'
+
+- name: INSTALLING - ZSH and FD-FIND
+  become: "{{ ansible_facts.distribution != 'MacOSX' }}"
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ zsh_dependencies }}"
+  loop_control:
+    label: "Install APT Package: {{ item }}"
+  when: not ansible_os_family == "Darwin"
+
+- name: Clone oh-my-zsh for users
+  tags:
+    # Suppress warning: [ANSIBLE0006] git used in place of git module
+    # Git module doesn't allow us to set `core.autocrlf=input`.
+    - skip_ansible_lint
+  become: true
+  become_user: '{{ item.username }}'
+  # core.autocrlf=input prevents https://github.com/ohmyzsh/ohmyzsh/issues/4402
+  ansible.builtin.command: 'git clone -c core.autocrlf=input --depth=1 https://github.com/ohmyzsh/ohmyzsh.git .oh-my-zsh'
+  args:
+    chdir: '~{{ item.username }}'
+    creates: '~{{ item.username }}/.oh-my-zsh'
+  loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
+  when: "item.oh_my_zsh is defined"
+
+- name: Set permissions of oh-my-zsh for users
+  become: true
+  ansible.builtin.file:
+    path: '~{{ item.username }}/.oh-my-zsh'
+    # Prevent the cloned repository from having insecure permissions. Failing to do
+    # so causes compinit() calls to fail with "command not found: compdef" errors
+    # for users with insecure umasks (e.g., "002", allowing group writability).
+    mode: 'go-w'
+    recurse: true
+  loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
+  when: "item.oh_my_zsh is defined"
+
+- name: Set default shell for users
+  become: true
+  ansible.builtin.user:
+    name: '{{ item.username }}'
+    shell: '{{ zsh_oh_my_zsh_path }}'
+  loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
+  when: "item.oh_my_zsh is defined"
+
+- name: Write .zshrc for users
+  become: true
+  become_user: '{{ item.username }}'
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: '~{{ time.username }}/.zshrc'
+    backup: true
+    mode: 'u=rw,go=r'
+  loop: '{{ zsh_users }}'
+  vars:
+    user_oh_my_zsh: '{{ user.oh_my_zsh | default({}) }}'
+  when: "oh_my_zsh.write_zshrc is true"
+  loop_control:
+    label: '{{ item.username }}'

@@ -1,0 +1,6 @@
+---
+- name: Installing ZSH and OH-MY-ZSH
+  ansible.builtin.include_tasks: install.yaml
+  tags:
+    - zsh
+    - install
