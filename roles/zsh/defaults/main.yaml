@@ -7,6 +7,8 @@ zsh_dependencies:
   - fd-find
 
 zsh_bin_path: "/usr/bin/zsh" # Ubuntu 22.04
+
+# OH-MY-ZSH
 zsh_oh_my_zsh_theme: "robbyrussell"
 
 # Whether to install by default for all specified users.
@@ -28,3 +30,18 @@ zsh_oh_my_zsh_update_frequency: 5
 # Whether to write the ~/.zshrc file
 # May be overridden by `oh_my_zsh: write_zshrc:` under each user.
 zsh_oh_my_zsh_write_zshrc: true
+
+# P10K
+zsh_p10k_dependencies:
+  - zsh
+  - git
+  - wget
+  - curl
+
+zsh_p10k_users:
+  - dmac # User Running Ansible
+
+zsh_p10k_fonts_path: "/usr/share/fonts/TTF"
+zsh_p10k_path: '.oh-my-zsh/custom/themes/powerlevel10k' # For Oh-My-ZSH
+zsh_p10k_repository_url: 'https://github.com/romkatv/powerlevel10k.git'
+zsh_p10k_write_p10k_config: true

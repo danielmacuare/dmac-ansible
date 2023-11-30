@@ -1,12 +1,24 @@
 ---
-- name: Installing ZSH
+- name: "Installing ZSH"
   ansible.builtin.include_tasks: install-zsh.yaml
   tags:
     - zsh
     - install
 
-- name: Installing OH-MY-ZSH
+- name: "Installing OH-MY-ZSH"
   ansible.builtin.include_tasks: install-oh-my-zsh.yaml
   tags:
     - oh-my-zsh
+    - install
+
+- name: "Installing ZSH-THEME:Powerlevel10K"
+  ansible.builtin.include_tasks: install-p10k.yaml
+  tags:
+    - p10k
+    - install
+
+- name: "Installing MesloLGS Fonts"
+  ansible.builtin.include_tasks: install-p10k-fonts.yaml
+  tags:
+    - meslolgs
     - install

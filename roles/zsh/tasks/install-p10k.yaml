@@ -1,0 +1,50 @@
+---
+- name: Installing P10K Dependencies
+  ansible.builtin.package:
+    name: "{{ zsh_p10k_dependencies }}"
+    state: present
+  become: true
+  when: zsh_p10k_dependencies
+
+- name: "GETTING - Users information"
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+  register: zsh_p10k_users_register
+  loop: "{{ zsh_p10k_users }}"
+
+- name: "EXTRACTING - 'name', 'home' and 'group' fields from users information"
+  ansible.builtin.set_fact:
+    zsh_p10k_users_information: "{{ zsh_p10k_users_information | default([]) + [{'name': item['name'], 'home': item['home'], 'group': item['group']}] }}"
+  no_log: true
+  loop: "{{ zsh_p10k_users_register.results }}"
+
+- name: "INSTALLING - Powerlevel10k"
+  ansible.builtin.git:
+    repo: "{{ zsh_p10k_repository_url }}"
+    dest: "{{ item['home'] }}/{{ zsh_p10k_path }}"
+    depth: '1'
+    update: false
+    version: 'master'
+  loop: "{{ zsh_p10k_users_information }}"
+
+- name: "SETTING - Permissions for Powerlevel10k"
+  ansible.builtin.file:
+    path: "{{ item['home'] }}/{{ zsh_p10k_path }}"
+    owner: "{{ item['name'] }}"
+    group: "{{ item['group'] }}"
+    recurse: true
+  loop: "{{ zsh_p10k_users_information }}"
+
+- name: "COPY - .p10k.zsh Config File for Users"
+  become: true
+  ansible.builtin.copy:
+    src: "p10k_zsh"
+    dest: '~{{ item.username }}/.p10k.zsh'
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: "0644"
+  loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
+  when: zsh_p10k_write_p10k_config | default(false)

@@ -89,7 +89,19 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
 - Role ZSH
     - Install ZSH (Done)
     - Install Oh-my-ZSH (Done)
-    - Install Powerlevel10K ZSH Theme
+    - Install Powerlevel10K ZSH Theme (Done)
+        - P10k Configured with a config file (Done)
+    - Install extra plugins for ZSH (Check if they ar eonly aliases, don't use them)
+        - autojump
+        - zsh-autosuggestions
+        - poetry
+        - zsh-syntax-high
+        - pyenv
+        - git
+        - ripgrep
+        - terraform
+        - copypath
+
 - Configure and test pre-commit (Done)
 - Add syntax higlihting vscode
 - Test ansible-lint in vscode (Suppose to come wit the Ansible extension)
