@@ -41,10 +41,10 @@ zerotier_network_id: "83048a0632608eee"
 zsh_users:
   - username: dmac
     oh_my_zsh:
-      # theme: robbyrussell
-      theme: "powerlevel10k/powerlevel10k"
+      theme: robbyrussell
+      # theme: "powerlevel10k/powerlevel10k"
       plugins:
         - git
       update_mode: auto
       update_frequency: 5
-      write_zshrc: false
+      write_zshrc: true

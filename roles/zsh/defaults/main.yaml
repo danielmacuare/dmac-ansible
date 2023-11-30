@@ -1,11 +1,12 @@
 ---
+# defaults file for ansible-role-zsh. Users can overrride these defaults
 zsh_dependencies:
   - zsh
   - git
   - wget
   - fd-find
 
-zsh_oh_my_zsh_path: "/usr/bin/zsh" # Ubuntu 22.04
+zsh_bin_path: "/usr/bin/zsh" # Ubuntu 22.04
 zsh_oh_my_zsh_theme: "robbyrussell"
 
 # Whether to install by default for all specified users.
@@ -22,7 +23,7 @@ zsh_oh_my_zsh_update_mode: disabled
 # Default update frequency in days. When the update mode is set to a value other
 # than "disabled", this is the frequency (in days) to check for a new version.
 # The value 0 will check every time a new shell session starts.
-zsh_oh_my_zsh_update_frequency: 13
+zsh_oh_my_zsh_update_frequency: 5
 
 # Whether to write the ~/.zshrc file
 # May be overridden by `oh_my_zsh: write_zshrc:` under each user.
