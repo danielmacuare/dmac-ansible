@@ -11,14 +11,13 @@ ZSH_THEME="{{ item.oh_my_zsh.theme | default(zsh_oh_my_zsh_theme) }}"
 
 
 # Powerlever10K
-source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme"
-
-
 # Powerlever10K Instant Prompt
 # https://github.com/romkatv/powerlevel10k#how-do-i-configure-instant-prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 {% if 'auto' == item.oh_my_zsh.update_mode | default(zsh_oh_my_zsh_update_mode) %}
 # Update automatically without asking
@@ -33,3 +32,17 @@ zstyle ':omz:update' mode disabled
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Custom Sources
+source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme"
+source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $HOME/.aliases
+
+plugins=(
+    zsh-autosuggestions
+)
+
+# ZSH Autogussestions
+typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=154'
+bindkey '`' autosuggest-execute
+bindkey '\e + w' autosuggest-accept

@@ -22,3 +22,9 @@
   tags:
     - meslolgs
     - install
+
+- name: "Installing ZSH Plugins"
+  ansible.builtin.include_tasks: install-zsh-plugins.yaml
+  tags:
+    - zsh
+    - install

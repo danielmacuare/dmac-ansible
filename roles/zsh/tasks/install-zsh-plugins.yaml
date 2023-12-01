@@ -1,0 +1,10 @@
+---
+- name: "INSTALLING - Plugin: ZSH Autosuggestions"
+  ansible.builtin.git:
+    repo: "{{ zsh_autosuggestions_repo_url }}"
+    dest: '~{{ zsh_plugins_path }}/zsh-autosuggestions'
+    depth: '1'
+    update: false
+    version: 'master'
+  loop: "{{ zsh_users }}"
+  when: "'zsh-autosuggestions' in zsh_plugins"

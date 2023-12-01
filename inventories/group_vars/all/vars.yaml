@@ -51,3 +51,10 @@ zsh_users:
 
 zsh_p10k_users:
   - dmac
+
+zsh_plugins:
+  - "zsh-autosuggestions"
+  - fzf
+  - zsh-syntax-highlighting
+
+zsh_plugins_path: "{{ item.username }}/.oh-my-zsh/custom/plugins"

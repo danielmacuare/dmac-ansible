@@ -38,10 +38,11 @@ zsh_p10k_dependencies:
   - wget
   - curl
 
-zsh_p10k_users:
-  - dmac # User Running Ansible
 
 zsh_p10k_fonts_path: "/usr/share/fonts/TTF"
 zsh_p10k_path: '.oh-my-zsh/custom/themes/powerlevel10k' # For Oh-My-ZSH
 zsh_p10k_repository_url: 'https://github.com/romkatv/powerlevel10k.git'
 zsh_p10k_write_p10k_config: true
+
+# ZSH Plugins
+zsh_autosuggestions_repo_url: "https://github.com/zsh-users/zsh-autosuggestions.git"

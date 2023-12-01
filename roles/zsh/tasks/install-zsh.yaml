@@ -31,7 +31,7 @@
   ansible.builtin.template:
     src: zshrc.j2
     dest: '~{{ item.username }}/.zshrc'
-    backup: true
+    backup: false
     mode: 'u=rw,go=r'
   loop: '{{ zsh_users }}'
   loop_control:
