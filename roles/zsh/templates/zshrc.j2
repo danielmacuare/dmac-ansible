@@ -37,6 +37,8 @@ zstyle ':omz:update' mode disabled
 source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme"
 source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $HOME/.aliases
+source {{ zsh_fzf_key_bindings_script }}
+source {{ zsh_fzf_autocompletion }}
 
 plugins=(
     zsh-autosuggestions
