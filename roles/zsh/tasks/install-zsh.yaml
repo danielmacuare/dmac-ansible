@@ -1,0 +1,39 @@
+---
+- name: UPDATING - Package cache
+  become: true
+  ansible.builtin.package:
+    update_cache: true
+  when: ansible_os_family != 'Darwin'
+
+- name: INSTALLING - ZSH and FD-FIND
+  become: "{{ ansible_facts.distribution != 'MacOSX' }}"
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ zsh_dependencies }}"
+  loop_control:
+    label: "Install APT Package: {{ item }}"
+  when: not ansible_os_family == "Darwin"
+
+- name: Set default shell for users
+  become: true
+  ansible.builtin.user:
+    name: '{{ item.username }}'
+    shell: '{{ zsh_bin_path }}'
+  loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
+  when: "item.username is defined"
+
+- name: Write .zshrc for users
+  become: true
+  become_user: '{{ item.username }}'
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: '~{{ item.username }}/.zshrc'
+    backup: false
+    mode: 'u=rw,go=r'
+  loop: '{{ zsh_users }}'
+  loop_control:
+    label: '{{ item.username }}'
+  when: item.oh_my_zsh.write_zshrc | default(false)

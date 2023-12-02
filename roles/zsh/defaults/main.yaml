@@ -1,0 +1,48 @@
+---
+# defaults file for ansible-role-zsh. Users can overrride these defaults
+zsh_dependencies:
+  - zsh
+  - git
+  - wget
+  - fd-find
+
+zsh_bin_path: "/usr/bin/zsh" # Ubuntu 22.04
+
+# OH-MY-ZSH
+zsh_oh_my_zsh_theme: "robbyrussell"
+
+# Whether to install by default for all specified users.
+# May be overridden by `zsh_oh_myzsh_install` under each user.
+zsh_oh_myzsh_install: true
+
+# Default update mode for Oh-My-Zsh
+# accepted values are:
+# disabled (default)
+# auto
+# reminder
+zsh_oh_my_zsh_update_mode: disabled
+
+# Default update frequency in days. When the update mode is set to a value other
+# than "disabled", this is the frequency (in days) to check for a new version.
+# The value 0 will check every time a new shell session starts.
+zsh_oh_my_zsh_update_frequency: 5
+
+# Whether to write the ~/.zshrc file
+# May be overridden by `oh_my_zsh: write_zshrc:` under each user.
+zsh_oh_my_zsh_write_zshrc: true
+
+# P10K
+zsh_p10k_dependencies:
+  - zsh
+  - git
+  - wget
+  - curl
+
+
+zsh_p10k_fonts_path: "/usr/share/fonts/TTF"
+zsh_p10k_path: '.oh-my-zsh/custom/themes/powerlevel10k' # For Oh-My-ZSH
+zsh_p10k_repository_url: 'https://github.com/romkatv/powerlevel10k.git'
+zsh_p10k_write_p10k_config: true
+
+# ZSH Plugins
+zsh_autosuggestions_repo_url: "https://github.com/zsh-users/zsh-autosuggestions.git"
