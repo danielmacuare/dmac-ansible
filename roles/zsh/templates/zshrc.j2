@@ -48,3 +48,9 @@ plugins=(
 typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=154'
 bindkey '`' autosuggest-execute
 bindkey '\e + w' autosuggest-accept
+
+# Custom Exports
+export EDITOR="/usr/bin/vim"
+## FZF with BATCAT Preview for files (To be Fixed)
+export FZF_DEFAULT_OPTS="--multi --preview-window 'right:60%' --preview 'batcat --color=always --style=header,grid --line-range :300 {}'"
+export FZF_COMPLETION_TRIGGER='LL'
