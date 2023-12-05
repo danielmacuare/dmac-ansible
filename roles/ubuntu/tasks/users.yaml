@@ -83,3 +83,13 @@
     mode: "0644"
   loop: "{{ users }}"
   when: item.custom_functions_file is defined
+
+- name: COPYING - Custom scripts
+  become: true
+  ansible.builtin.copy:
+    src: "custom_scripts"
+    dest: "/home/{{ item.username }}/"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: "0755"
+  loop: "{{ users }}"
