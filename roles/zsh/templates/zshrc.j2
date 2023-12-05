@@ -54,3 +54,13 @@ export EDITOR="/usr/bin/vim"
 ## FZF with BATCAT Preview for files (To be Fixed)
 export FZF_DEFAULT_OPTS="--multi --preview-window 'right:60%' --preview 'batcat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_COMPLETION_TRIGGER='LL'
+
+## Custom Functions (To be taken out of here)
+funct xp () {
+    if [ ! -z $1 ]; then
+        current_directory=$1
+    else
+        current_directory='.'
+    fi
+    source $HOME/custom_scripts/fzf_explorer.sh 
+}

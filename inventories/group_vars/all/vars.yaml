@@ -27,6 +27,8 @@ apt_packages:
   - jq
   - nala
   - fzf
+  - tldr
+  - duf
 
 snap_packages:
   - name: spt
