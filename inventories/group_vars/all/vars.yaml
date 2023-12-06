@@ -57,7 +57,7 @@ zsh_p10k_users:
 
 zsh_plugins:
   - "zsh-autosuggestions"
-  - zsh-syntax-highlighting
+  - "zsh-fast-syntax-highlighting"
 
 zsh_plugins_path: "{{ item.username }}/.oh-my-zsh/custom/plugins"
 # The following script will help you to make use fzf for options like ctr+r in ZSH

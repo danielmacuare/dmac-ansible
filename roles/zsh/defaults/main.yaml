@@ -46,3 +46,4 @@ zsh_p10k_write_p10k_config: true
 
 # ZSH Plugins
 zsh_autosuggestions_repo_url: "https://github.com/zsh-users/zsh-autosuggestions.git"
+zsh_fast_syntax_highlighting_repo_url: "https://github.com/zdharma-continuum/fast-syntax-highlighting.git"
