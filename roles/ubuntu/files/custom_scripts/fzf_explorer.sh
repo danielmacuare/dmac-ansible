@@ -30,16 +30,6 @@ if [ -z "$selection" ]; then
 elif [ -d "$selection" ]; then
     cd "$selection" || exit
 else
-    eval "$EDITOR $selection"
-fi
-
-
-# Determine what to do depending on the selection
-if [ -z "$selection" ]; then
-    :
-elif [ -d "$selection" ]; then
-    cd "$selection" || exit
-else
     if [[ $selection == *$'\n'* ]]; then
         # If string is a multiline selection including \n then replace it by spaces
         cleaned_string=$(echo -n "${selection}" | tr '\n' ' ')
