@@ -19,6 +19,7 @@
   loop: "{{ users }}"
   loop_control:
     label: "Creating User: {{ item.username }}"
+  no_log: true
 
 - name: 'VALIDATING - Auth Key Dir is created: "{{ auth_key_dir }}"'
   become: true

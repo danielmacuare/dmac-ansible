@@ -5,3 +5,8 @@
     state: present
     classic: true
     channel: "latest/stable"
+  register: zerotier_install
+
+- name: "WAITING 1 minutes - For ZeroTier to get online" # noqa:
+  ansible.builtin.command: "sleep 60"
+  when: zerotier_install.changed

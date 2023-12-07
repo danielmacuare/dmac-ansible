@@ -1,0 +1,8 @@
+---
+- name: "JOINING Node on Zerotier Network: {{ zerotier_network_id }}"
+  when:
+    - not ansible_check_mode
+  tags:
+    - configuration
+  become: true
+  ansible.builtin.command: zerotier-cli join {{ zerotier_network_id }}
