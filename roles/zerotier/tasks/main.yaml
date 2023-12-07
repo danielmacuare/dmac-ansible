@@ -17,3 +17,9 @@
   when:
     - zerotier_api_accesstoken | length > 0
     - ansible_local['zerotier']['node_id'] is defined
+
+- name: "Including Task: join_network.yaml"
+  ansible.builtin.include_tasks: join_network.yaml
+  when:
+    - zerotier_api_accesstoken | length > 0
+    - ansible_local['zerotier']['node_id'] is defined
