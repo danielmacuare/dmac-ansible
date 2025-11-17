@@ -18,9 +18,10 @@ users:
 ## How to use
 
 ### Pre-requisites
+- Install uv: https://docs.astral.sh/uv/getting-started/installation/
 - Add a file with a password to decrypt Vault variables on the following path `~/.vault_pass`. This is controlled by the `ansible.cfg` file.
-- Enable your virtualenvironment (VIa pip or Poetry)
-- Install all python dependencies
+- Install all python dependencies: `uv sync`
+- Enable your virtual environment: `source .venv/bin/activate` (or use `uv run` prefix)
 - Modify the ansible inventory with your user
 
 
@@ -32,9 +33,12 @@ ssh dock01
 - On dock01
 ```bash
 cd repos/dmac-ansible
+uv sync  # Install/update dependencies
 source .venv/bin/activate
 ansible-playbook playbooks/ubuntu.yml -K
 
+# Or run directly with uv
+uv run ansible-playbook playbooks/ubuntu.yml -K
 ```
 
 
@@ -50,10 +54,10 @@ $y$j9T$ugEXXXflDJbz.yBSt4qm3/$9xnQ9gTo2FBvF7vcuEb8QklB7twM/oZwM7bxB1Y54HA
 ssh_pass: "$y$j9T$ugEXXXflDJbz.yBSt4qm3/$9xnQ9gTo2FBvF7vcuEb8QklB7twM/oZwM7bxB1Y54HA"
 ```
 
-#### Method 2 (Python)
+#### Method 2 (Python with uv)
 ``` python
-poetry add passlib or pip install passlib
-python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
+# passlib is already in dependencies
+uv run python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
 
 Password:
 $6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkRwSgwWNT/3Pbic0Z2gZs4mW6jQPviosCBdmwJ.
@@ -65,7 +69,7 @@ ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkR
 
 ## Requirements
 - To setup the Ansible control node:
-    - `python3 + pip or poetry`
+    - `uv` (https://docs.astral.sh/uv/getting-started/installation/)
     - `sudo apt install sshpass`
 
 ## TO-DO
