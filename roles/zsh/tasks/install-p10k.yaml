@@ -4,7 +4,7 @@
     name: "{{ zsh_p10k_dependencies }}"
     state: present
   become: true
-  when: zsh_p10k_dependencies
+  when: zsh_p10k_dependencies is defined and zsh_p10k_dependencies | length > 0
 
 - name: "GETTING - Users information"
   ansible.builtin.user:

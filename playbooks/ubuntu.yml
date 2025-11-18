@@ -1,6 +1,6 @@
 ---
 - name: Test
-  hosts: pve02-01
+  hosts: ubuntu-hosts
   gather_facts: true
   roles:
     - {role: ubuntu, tags: ['ubuntu']}
