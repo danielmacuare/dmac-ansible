@@ -23,22 +23,24 @@ users:
 - Add a file with a password to decrypt Vault variables on the following path `~/.vault_pass`. This is controlled by the `ansible.cfg` file.
 - Install all python dependencies: `uv sync`
 - Enable your virtual environment: `source .venv/bin/activate` (or use `uv run` prefix)
-- Modify the ansible inventory with your user
 - Update the inventory file at [inventories/inventory.ini](inventories/inventory.ini)
 
 
 ### Update your vars
 
-- Update the [inventories/group_vars/all/vars](inventories/group_vars/all/vars) file
+- Update the [inventories/group_vars/all/vars.yaml](inventories/group_vars/all/vars.yaml) file
     - SSH Public Keys need to be added to the [roles/ubuntu/files/](roles/ubuntu/files/) folder.
 ```bash
 cd roles/ubuntu/files/
 echo "SSH-PUB-KEY-HASH" > dmac.pub
 echo "SSH-PUB-KEY-HASH" > svmt.pub
 ```
-- All Sensitive vars will be stored in the [inventories/group_vars/all/vault.yaml](inventories/group_vars/all/vault.yaml) file so make sure to create 
+- All Sensitive vars will be stored in the [inventories/group_vars/all/vault.yaml](inventories/group_vars/all/vault.yaml)
+- You can find and create all the `vault_varname` variables that need to be defined in the `vault.yaml` file with the following commands:
 ```bash
 grep -r vault_ inventories/group_vars   # This will tell you which vault variables need to be defined.
+
+
 ansible-vault create inventories/group_vars/all/vault.yaml # Then create this file with the variables above.
 ```
 
