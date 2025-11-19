@@ -4,11 +4,20 @@ Personal Ansible automation repository for managing Ubuntu server configurations
 
 ## Roles
 
-This repository includes three main roles:
+This repository includes the following roles:
 
+### Custom Roles
 - **[ubuntu](roles/ubuntu/README.md)** - User and group management, SSH keys, APT/Snap packages
 - **[zerotier](roles/zerotier/README.md)** - ZeroTier VPN network setup and authorization
 - **[zsh](roles/zsh/README.md)** - ZSH shell with Oh-My-Zsh and Powerlevel10k theme
+
+### External Roles
+- **[geerlingguy.docker](docs/docker-role.md)** - Docker CE installation and configuration
+
+External roles must be installed from Ansible Galaxy:
+```bash
+ansible-galaxy install -r requirements.yml -p ./roles
+```
 
 See each role's README for detailed documentation.
 
@@ -17,15 +26,19 @@ See each role's README for detailed documentation.
 ### Prerequisites
 
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
-2. Install dependencies:
+2. Install Python dependencies:
    ```bash
    uv sync
    ```
-3. Install sshpass (for SSH password authentication):
+3. Install Ansible Galaxy roles:
+   ```bash
+   ansible-galaxy install -r requirements.yml -p ./roles
+   ```
+4. Install sshpass (for SSH password authentication):
    ```bash
    sudo apt install sshpass
    ```
-4. Create vault password file at `~/.vault_pass`
+5. Create vault password file at `~/.vault_pass`
 
 ### Configuration
 
@@ -56,11 +69,13 @@ ansible-playbook playbooks/ubuntu.yml -K --tags zsh
 - [Configuration Guide](docs/configuration.md) - Initial setup and configuration
 - [Password Generation](docs/password-generation.md) - Generate user password hashes
 - [Development Guide](docs/development.md) - Contributing and development workflow
+- [Docker Role Guide](docs/docker-role.md) - Docker installation and configuration
 
 ### Role Documentation
 - [Ubuntu Role](roles/ubuntu/README.md) - User management, SSH, and packages
 - [ZeroTier Role](roles/zerotier/README.md) - VPN network configuration
 - [ZSH Role](roles/zsh/README.md) - Shell configuration and theming
+- [Docker Role](docs/docker-role.md) - Docker CE installation (external role)
 
 ## Project Structure
 

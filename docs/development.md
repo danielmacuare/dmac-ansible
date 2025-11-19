@@ -9,9 +9,14 @@ Install uv:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Install dependencies:
+Install Python dependencies:
 ```bash
 uv sync
+```
+
+Install Ansible Galaxy roles:
+```bash
+ansible-galaxy install -r requirements.yml -p ./roles
 ```
 
 Activate virtual environment:
@@ -249,3 +254,4 @@ Check ansible.cfg points to correct vault password file.
 - [Ubuntu Role](../roles/ubuntu/README.md)
 - [ZeroTier Role](../roles/zerotier/README.md)
 - [ZSH Role](../roles/zsh/README.md)
+- [Docker Role](docker-role.md)

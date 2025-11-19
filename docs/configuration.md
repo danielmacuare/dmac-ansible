@@ -15,6 +15,13 @@ Install Python dependencies:
 uv sync
 ```
 
+Install Ansible Galaxy roles:
+```bash
+ansible-galaxy install -r requirements.yml -p ./roles
+```
+
+This installs external roles like `geerlingguy.docker` to the `./roles` directory.
+
 Install system dependencies:
 ```bash
 sudo apt install sshpass
@@ -127,9 +134,13 @@ ansible-playbook playbooks/ubuntu.yml -K --check
 
 For detailed configuration instructions for each role, see:
 
+### Custom Roles
 - **[Ubuntu Role Documentation](../roles/ubuntu/README.md)** - User management, SSH keys, and package installation
 - **[ZeroTier Role Documentation](../roles/zerotier/README.md)** - VPN network setup and authorization
 - **[ZSH Role Documentation](../roles/zsh/README.md)** - Shell configuration with Oh-My-Zsh and Powerlevel10k
+
+### External Roles
+- **[Docker Role Documentation](docker-role.md)** - Docker CE installation and configuration
 
 Each role README contains:
 - Required variables and configuration

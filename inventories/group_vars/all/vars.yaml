@@ -66,3 +66,38 @@ zsh_plugins_path: "{{ item.username }}/.oh-my-zsh/custom/plugins"
 # The following script will help you to make use fzf for options like ctr+r in ZSH
 zsh_fzf_key_bindings_script: "/usr/share/doc/fzf/examples/key-bindings.zsh"
 zsh_fzf_autocompletion: "/usr/share/doc/fzf/examples/completion.zsh"
+
+# Docker Role
+docker_edition: 'ce'
+docker_packages:
+  - "docker-{{ docker_edition }}"
+  - "docker-{{ docker_edition }}-cli"
+  - "docker-{{ docker_edition }}-rootless-extras"
+  - "containerd.io"
+  - docker-buildx-plugin
+docker_packages_state: present
+docker_obsolete_packages:
+  - docker
+  - docker.io
+  - docker-engine
+  - docker-doc
+  - docker-compose
+  - docker-compose-v2
+  - podman-docker
+  - containerd
+  - runc
+
+# Docker Compose Plugin options.
+docker_install_compose_plugin: true
+docker_compose_package: docker-compose-plugin
+docker_compose_package_state: present
+
+# Docker Compose options.
+docker_install_compose: false # Prevents legacy binary
+docker_compose_version: "v2.40.3" # Latest as of 11/2025
+docker_compose_path: /usr/local/bin/docker-compose
+
+# A list of users who will be added to the docker group.
+docker_users:
+  - dmac
+  - svmt

@@ -1,0 +1,5 @@
+---
+# https://galaxy.ansible.com/ui/standalone/roles/geerlingguy/docker/
+roles:
+  - name: geerlingguy.docker
+    version: 7.8.0
