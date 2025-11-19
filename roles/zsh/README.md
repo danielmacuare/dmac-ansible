@@ -18,7 +18,11 @@ This role:
 2. **Oh-My-Zsh Setup**: Installs Oh-My-Zsh framework for each user
 3. **Powerlevel10k Theme**: Installs and configures P10k theme
 4. **Font Installation**: Installs MesloLGS Nerd Fonts for proper icon display
-5. **Plugin Installation**: Installs zsh-autosuggestions and fast-syntax-highlighting
+5. **Plugin Installation**: Installs custom ZSH plugins:
+   - zsh-autosuggestions - Command suggestions based on history
+   - zsh-fast-syntax-highlighting - Syntax highlighting as you type
+   - fzf-tab - Fuzzy finder for tab completion
+   - zsh-completions - Additional completion definitions
 6. **Shell Configuration**: Generates .zshrc for each user
 7. **Default Shell**: Sets ZSH as default shell for specified users
 
@@ -85,6 +89,7 @@ ansible-playbook playbooks/ubuntu.yml -K --tags p10k
 | `zsh_oh_my_zsh_write_zshrc` | boolean | `true` | Generate .zshrc file |
 | `zsh_p10k_write_p10k_config` | boolean | `true` | Deploy P10k config file |
 | `zsh_plugins` | list | `[]` | ZSH plugins to install |
+| `zsh_plugins_path` | string | `.oh-my-zsh/custom/plugins` | Path for custom plugins |
 
 ### Default Values
 
@@ -112,6 +117,13 @@ zsh_p10k_dependencies:
   - curl
 
 zsh_p10k_write_p10k_config: true
+
+# Plugin configuration
+zsh_plugins_path: '.oh-my-zsh/custom/plugins'
+zsh_autosuggestions_repo_url: "https://github.com/zsh-users/zsh-autosuggestions.git"
+zsh_fast_syntax_highlighting_repo_url: "https://github.com/zdharma-continuum/fast-syntax-highlighting.git"
+zsh_fzf_tab_repo_url: "https://github.com/Aloxaf/fzf-tab.git"
+zsh_completions_repo_url: "https://github.com/zsh-users/zsh-completions.git"
 ```
 
 ## Common Issues
@@ -278,12 +290,30 @@ Note: If using Powerlevel10k, this will be overridden.
 Edit `inventories/group_vars/all/vars.yaml`:
 ```yaml
 zsh_plugins:
-  - zsh-autosuggestions
-  - zsh-fast-syntax-highlighting
-  - git
-  - docker
-  - kubectl
+  - zsh-autosuggestions      # Command suggestions based on history
+  - zsh-fast-syntax-highlighting  # Syntax highlighting
+  - fzf-tab                  # Fuzzy finder for tab completion
+  - zsh-completions          # Additional completion definitions
+  - git                      # Git aliases (built-in Oh-My-Zsh)
+  - docker                   # Docker aliases (built-in Oh-My-Zsh)
+  - kubectl                  # Kubernetes aliases (built-in Oh-My-Zsh)
 ```
+
+**Available Custom Plugins (installed by this role):**
+- `zsh-autosuggestions` - Suggests commands as you type based on history and completion
+- `zsh-fast-syntax-highlighting` - Highlights commands with colors as you type
+- `fzf-tab` - Replaces tab completion with fuzzy finder (interactive search)
+- `zsh-completions` - Additional completion definitions for 500+ commands
+
+**Built-in Oh-My-Zsh Plugins:**
+Oh-My-Zsh includes many built-in plugins. Just add their names to the list (e.g., `git`, `docker`, `kubectl`, `terraform`, etc.)
+
+**Plugin Repository URLs:**
+You can customize plugin sources by overriding these variables:
+- `zsh_autosuggestions_repo_url`
+- `zsh_fast_syntax_highlighting_repo_url`
+- `zsh_fzf_tab_repo_url`
+- `zsh_completions_repo_url`
 
 ### Customize P10k Configuration
 
@@ -349,6 +379,8 @@ zsh_users:
 zsh_plugins:
   - zsh-autosuggestions
   - zsh-fast-syntax-highlighting
+  - fzf-tab
+  - zsh-completions
 ```
 
 ### Advanced Configuration
@@ -365,6 +397,8 @@ zsh_users:
 zsh_plugins:
   - zsh-autosuggestions
   - zsh-fast-syntax-highlighting
+  - fzf-tab
+  - zsh-completions
   - git
   - docker
   - kubectl

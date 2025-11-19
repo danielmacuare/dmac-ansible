@@ -45,5 +45,8 @@ zsh_p10k_repository_url: 'https://github.com/romkatv/powerlevel10k.git'
 zsh_p10k_write_p10k_config: true
 
 # ZSH Plugins
+zsh_plugins_path: '.oh-my-zsh/custom/plugins'
 zsh_autosuggestions_repo_url: "https://github.com/zsh-users/zsh-autosuggestions.git"
 zsh_fast_syntax_highlighting_repo_url: "https://github.com/zdharma-continuum/fast-syntax-highlighting.git"
+zsh_fzf_tab_repo_url: "https://github.com/Aloxaf/fzf-tab.git"
+zsh_completions_repo_url: "https://github.com/zsh-users/zsh-completions.git"

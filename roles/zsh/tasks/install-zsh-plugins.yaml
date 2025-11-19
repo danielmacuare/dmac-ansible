@@ -18,3 +18,23 @@
     version: 'master'
   loop: "{{ zsh_users }}"
   when: "'zsh-fast-syntax-highlighting' in zsh_plugins"
+
+- name: "INSTALLING - Plugin: fzf-tab"
+  ansible.builtin.git:
+    repo: "{{ zsh_fzf_tab_repo_url }}"
+    dest: '~{{ zsh_plugins_path }}/fzf-tab'
+    depth: '1'
+    update: false
+    version: 'master'
+  loop: "{{ zsh_users }}"
+  when: "'fzf-tab' in zsh_plugins"
+
+- name: "INSTALLING - Plugin: zsh-completions"
+  ansible.builtin.git:
+    repo: "{{ zsh_completions_repo_url }}"
+    dest: '~{{ zsh_plugins_path }}/zsh-completions'
+    depth: '1'
+    update: false
+    version: 'master'
+  loop: "{{ zsh_users }}"
+  when: "'zsh-completions' in zsh_plugins"
