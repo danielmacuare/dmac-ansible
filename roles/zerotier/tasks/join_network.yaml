@@ -1,8 +1,15 @@
 ---
+- name: "CHECK - If already joined to Network: {{ zerotier_network_id }}"
+  ansible.builtin.command: zerotier-cli listnetworks
+  register: zerotier_network_list
+  changed_when: false
+  become: true
+
 - name: "JOINING Node on Zerotier Network: {{ zerotier_network_id }}"
+  ansible.builtin.command: zerotier-cli join {{ zerotier_network_id }}
+  become: true
   when:
     - not ansible_check_mode
+    - zerotier_network_id not in zerotier_network_list.stdout
   tags:
     - configuration
-  become: true
-  ansible.builtin.command: zerotier-cli join {{ zerotier_network_id }}

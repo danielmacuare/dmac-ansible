@@ -125,9 +125,11 @@ If `zerotier_api_accesstoken` is provided:
 
 ### Network Joining
 
-1. Uses `zerotier-cli` to join the network
-2. Verifies the join was successful
+1. Checks if node is already joined to the network
+2. Only joins if not already a member (idempotent)
 3. Node appears in ZeroTier Central dashboard
+
+The role is fully idempotent - running it multiple times won't cause changes if the system is already in the desired state.
 
 ## Common Issues
 
