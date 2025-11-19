@@ -24,6 +24,8 @@ apt_packages:
   - sshpass
   - nmap
   - bat
+  - ripgrep
+  - zoxide
   - jq
   - nala
   - fzf
