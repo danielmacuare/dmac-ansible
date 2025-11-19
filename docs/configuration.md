@@ -45,38 +45,46 @@ ansible_python_interpreter=/usr/bin/python3
 
 ### 4. Configure Variables
 
-Edit `inventories/group_vars/all/vars.yaml` to define your configuration:
+Edit `inventories/group_vars/all/vars.yaml` to define your configuration.
 
+For detailed variable configuration for each role, see:
+- [Ubuntu Role - Required Inputs](../roles/ubuntu/README.md#required-inputs)
+- [ZeroTier Role - Required Inputs](../roles/zerotier/README.md#required-inputs)
+- [ZSH Role - Required Inputs](../roles/zsh/README.md#required-inputs)
+
+Basic example:
 ```yaml
+# Users (see Ubuntu role docs for full details)
 users:
   - username: dmac
     sudo_access: true
     ssh_access: true
     ssh_pub_key: "{{ lookup('file', 'dmac.pub') }}"
     ssh_pass: "{{ vault_dmac_ssh_pass }}"
-    custom_alias_file: aliases_dmac.j2
-    custom_functions_file: functions_dmac.j2
 
+# Packages (see Ubuntu role docs)
 apt_packages:
   - name: git
     state: present
-  - name: vim
-    state: present
 
-snap_packages:
-  - name: btop
-    classic: false
+# ZeroTier (see ZeroTier role docs)
+zerotier_network_id: "your-network-id"
+zerotier_api_accesstoken: "{{ vault_zerotier_api_token }}"
+
+# ZSH users (see ZSH role docs)
+zsh_users:
+  - username: dmac
+    oh_my_zsh:
+      write_zshrc: true
 ```
-
-**Important**: SSH public key filenames must match usernames (e.g., `dmac.pub` for user `dmac`).
 
 ### 5. Add SSH Public Keys
 
-Add SSH public keys to `roles/ubuntu/files/`:
+Add SSH public keys to `roles/ubuntu/files/`. See [Ubuntu Role - SSH Keys](../roles/ubuntu/README.md#2-ssh-public-keys) for details.
+
 ```bash
 cd roles/ubuntu/files/
 echo "ssh-rsa AAAAB3NzaC1yc2E..." > dmac.pub
-echo "ssh-rsa AAAAB3NzaC1yc2E..." > user2.pub
 ```
 
 ### 6. Configure Vault Variables
@@ -117,30 +125,17 @@ ansible-playbook playbooks/ubuntu.yml -K --check
 
 ## Role-Specific Configuration
 
-### Ubuntu Role
+For detailed configuration instructions for each role, see:
 
-Configures base Ubuntu system with users, groups, and packages.
+- **[Ubuntu Role Documentation](../roles/ubuntu/README.md)** - User management, SSH keys, and package installation
+- **[ZeroTier Role Documentation](../roles/zerotier/README.md)** - VPN network setup and authorization
+- **[ZSH Role Documentation](../roles/zsh/README.md)** - Shell configuration with Oh-My-Zsh and Powerlevel10k
 
-Variables in `vars.yaml`:
-- `users`: List of users to create
-- `apt_packages`: APT packages to install
-- `snap_packages`: Snap packages to install
-
-### ZeroTier Role
-
-Sets up ZeroTier VPN networking.
-
-Variables in `vars.yaml`:
-```yaml
-zerotier_network_id: "your-network-id"
-zerotier_api_token: "{{ vault_zerotier_api_token }}"
-```
-
-### ZSH Role
-
-Installs and configures ZSH with Oh-My-Zsh and Powerlevel10k theme.
-
-No additional configuration required - uses sensible defaults.
+Each role README contains:
+- Required variables and configuration
+- File locations and naming conventions
+- Common issues and troubleshooting
+- Usage examples
 
 ## Troubleshooting
 

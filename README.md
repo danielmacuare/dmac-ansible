@@ -2,12 +2,15 @@
 
 Personal Ansible automation repository for managing Ubuntu server configurations.
 
-## Features
+## Roles
 
-- User and group management with SSH key configuration
-- System package installation (apt and snap)
-- ZeroTier VPN network setup and authorization
-- ZSH shell configuration with Oh-My-Zsh and Powerlevel10k theme
+This repository includes three main roles:
+
+- **[ubuntu](roles/ubuntu/README.md)** - User and group management, SSH keys, APT/Snap packages
+- **[zerotier](roles/zerotier/README.md)** - ZeroTier VPN network setup and authorization
+- **[zsh](roles/zsh/README.md)** - ZSH shell with Oh-My-Zsh and Powerlevel10k theme
+
+See each role's README for detailed documentation.
 
 ## Quick Start
 
@@ -49,9 +52,15 @@ ansible-playbook playbooks/ubuntu.yml -K --tags zsh
 
 ## Documentation
 
-- [Configuration Guide](docs/configuration.md) - Detailed setup and configuration
+### General Documentation
+- [Configuration Guide](docs/configuration.md) - Initial setup and configuration
 - [Password Generation](docs/password-generation.md) - Generate user password hashes
 - [Development Guide](docs/development.md) - Contributing and development workflow
+
+### Role Documentation
+- [Ubuntu Role](roles/ubuntu/README.md) - User management, SSH, and packages
+- [ZeroTier Role](roles/zerotier/README.md) - VPN network configuration
+- [ZSH Role](roles/zsh/README.md) - Shell configuration and theming
 
 ## Project Structure
 
@@ -61,10 +70,10 @@ ansible-playbook playbooks/ubuntu.yml -K --tags zsh
 │   ├── inventory.ini        # Host definitions
 │   └── group_vars/all/      # Group variables
 ├── playbooks/               # Ansible playbooks
-├── roles/                   # Ansible roles
-│   ├── ubuntu/             # Base Ubuntu configuration
-│   ├── zerotier/           # ZeroTier VPN setup
-│   └── zsh/                # ZSH shell configuration
+├── roles/                   # Ansible roles (see role READMEs for details)
+│   ├── ubuntu/             # Base system configuration
+│   ├── zerotier/           # VPN networking
+│   └── zsh/                # Shell configuration
 └── ansible.cfg             # Ansible configuration
 ```
 

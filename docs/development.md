@@ -107,48 +107,15 @@ ansible-playbook playbooks/ubuntu.yml -K --tags newrole --check
 
 ### Adding a New User
 
-1. Generate SSH key pair (if needed):
-```bash
-ssh-keygen -t ed25519 -C "user@example.com" -f ~/.ssh/newuser
-```
+For detailed instructions on adding users, see the [Ubuntu Role - Adding New Users](../roles/ubuntu/README.md#examples) documentation.
 
-2. Add public key to role files:
-```bash
-cp ~/.ssh/newuser.pub roles/ubuntu/files/newuser.pub
-```
-
-3. Generate password hash:
-```bash
-uv run python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
-```
-
-4. Add user to vars.yaml:
-```yaml
-users:
-  - username: newuser
-    sudo_access: true
-    ssh_access: true
-    ssh_pub_key: "{{ lookup('file', 'newuser.pub') }}"
-    ssh_pass: "{{ vault_newuser_ssh_pass }}"
-    custom_alias_file: aliases_newuser.j2
-    custom_functions_file: functions_newuser.j2
-```
-
-5. Add password hash to vault:
-```bash
-ansible-vault edit inventories/group_vars/all/vault.yaml
-```
-
-Add:
-```yaml
-vault_newuser_ssh_pass: "$6$your_hash_here"
-```
-
-6. Create user-specific templates (optional):
-```bash
-cp roles/ubuntu/templates/aliases_dmac.j2 roles/ubuntu/templates/aliases_newuser.j2
-cp roles/ubuntu/templates/functions_dmac.j2 roles/ubuntu/templates/functions_newuser.j2
-```
+Quick steps:
+1. Generate SSH key pair
+2. Add public key to `roles/ubuntu/files/`
+3. Generate password hash (see [Password Generation](password-generation.md))
+4. Add user to `vars.yaml`
+5. Add password hash to `vault.yaml`
+6. Create user-specific templates (optional)
 
 ### Modifying Variables
 
@@ -272,7 +239,13 @@ Check ansible.cfg points to correct vault password file.
 
 ## Resources
 
+### External Documentation
 - [Ansible Documentation](https://docs.ansible.com/)
 - [ansible-lint Rules](https://ansible.readthedocs.io/projects/lint/rules/)
 - [Jinja2 Templates](https://jinja.palletsprojects.com/)
 - [uv Documentation](https://docs.astral.sh/uv/)
+
+### Role Documentation
+- [Ubuntu Role](../roles/ubuntu/README.md)
+- [ZeroTier Role](../roles/zerotier/README.md)
+- [ZSH Role](../roles/zsh/README.md)
