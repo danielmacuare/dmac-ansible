@@ -61,11 +61,10 @@ zsh_p10k_users:
 zsh_plugins:
   - "zsh-autosuggestions"
   - "zsh-fast-syntax-highlighting"
+  - "fzf-tab"
+  - "zsh-completions"
 
 zsh_plugins_path: "{{ item.username }}/.oh-my-zsh/custom/plugins"
-# The following script will help you to make use fzf for options like ctr+r in ZSH
-zsh_fzf_key_bindings_script: "/usr/share/doc/fzf/examples/key-bindings.zsh"
-zsh_fzf_autocompletion: "/usr/share/doc/fzf/examples/completion.zsh"
 
 # Docker Role
 docker_edition: 'ce'
