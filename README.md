@@ -62,7 +62,6 @@ uv run ansible-vault encrypt vault.yaml --vault-password-file ~/.vault_pass
 1. Update inventory: `inventories/inventory.ini`
 2. Configure variables: `inventories/group_vars/all/vars.yaml`
 3. Add SSH public keys to: `roles/ubuntu/files/`
-4. Create encrypted vault: `inventories/group_vars/all/vault.yaml`
 
 See [Configuration Guide](docs/configuration.md) for detailed setup instructions.
 

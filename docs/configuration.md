@@ -17,7 +17,7 @@ uv sync
 
 Install Ansible Galaxy roles:
 ```bash
-ansible-galaxy install -r requirements.yml -p ./roles
+uv run ansible-galaxy install -r requirements.yml -p ./roles
 ```
 
 This installs external roles like `geerlingguy.docker` to the `./roles` directory.
@@ -103,7 +103,7 @@ grep -r "vault_" inventories/group_vars/all/vars.yaml
 
 Create the vault file:
 ```bash
-ansible-vault create inventories/group_vars/all/vault.yaml
+uv ansible-vault edit inventories/group_vars/all/vault.yaml
 ```
 
 Add vault variables (see [Password Generation](password-generation.md) for creating password hashes):
@@ -117,17 +117,17 @@ vault_zerotier_api_token: "your-zerotier-api-token"
 
 Test connectivity:
 ```bash
-ansible all -m ping
+uv ansible all -m ping
 ```
 
 Check playbook syntax:
 ```bash
-ansible-playbook playbooks/ubuntu.yml --syntax-check
+uv ansible-playbook playbooks/ubuntu.yml --syntax-check
 ```
 
 Run in check mode (dry run):
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --check
+uv ansible-playbook playbooks/ubuntu.yml -K --check
 ```
 
 ## Role-Specific Configuration
@@ -154,7 +154,7 @@ Each role README contains:
 
 Ensure `~/.vault_pass` exists and contains the correct password:
 ```bash
-ansible-vault view inventories/group_vars/all/vault.yaml
+uv ansible-vault view inventories/group_vars/all/vault.yaml
 ```
 
 ### SSH Connection Issues
@@ -174,7 +174,5 @@ ssh your_host
 Check that all `vault_` variables referenced in `vars.yaml` are defined in `vault.yaml`:
 ```bash
 grep -r "vault_" inventories/group_vars/all/vars.yaml
-ansible-vault view inventories/group_vars/all/vault.yaml
+uv ansible-vault view inventories/group_vars/all/vault.yaml
 ```
-
-For more troubleshooting, see the steering files in `.kiro/steering/troubleshooting.md`.
