@@ -20,6 +20,8 @@
   loop: "{{ zsh_p10k_users_register.results }}"
 
 - name: "INSTALLING - Powerlevel10k"
+  become: true
+  become_user: "{{ item['name'] }}"
   ansible.builtin.git:
     repo: "{{ zsh_p10k_repository_url }}"
     dest: "{{ item['home'] }}/{{ zsh_p10k_path }}"
@@ -29,6 +31,7 @@
   loop: "{{ zsh_p10k_users_information }}"
 
 - name: "SETTING - Permissions for Powerlevel10k"
+  become: true
   ansible.builtin.file:
     path: "{{ item['home'] }}/{{ zsh_p10k_path }}"
     owner: "{{ item['name'] }}"

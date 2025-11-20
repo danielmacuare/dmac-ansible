@@ -1,40 +1,56 @@
 ---
 - name: "INSTALLING - Plugin: ZSH Autosuggestions"
+  become: true
+  become_user: "{{ item.username }}"
   ansible.builtin.git:
     repo: "{{ zsh_autosuggestions_repo_url }}"
-    dest: '~{{ zsh_plugins_path }}/zsh-autosuggestions'
+    dest: '~{{ item.username }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions'
     depth: '1'
     update: false
     version: 'master'
   loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
   when: "'zsh-autosuggestions' in zsh_plugins"
 
 - name: "INSTALLING - Plugin: ZSH Fast Syntax Highlighting"
+  become: true
+  become_user: "{{ item.username }}"
   ansible.builtin.git:
     repo: "{{ zsh_fast_syntax_highlighting_repo_url }}"
-    dest: '~{{ zsh_plugins_path }}/fast-syntax-highlighting'
+    dest: '~{{ item.username }}/.oh-my-zsh/custom/plugins/fast-syntax-highlighting'
     depth: '1'
     update: false
     version: 'master'
   loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
   when: "'zsh-fast-syntax-highlighting' in zsh_plugins"
 
 - name: "INSTALLING - Plugin: fzf-tab"
+  become: true
+  become_user: "{{ item.username }}"
   ansible.builtin.git:
     repo: "{{ zsh_fzf_tab_repo_url }}"
-    dest: '~{{ zsh_plugins_path }}/fzf-tab'
+    dest: '~{{ item.username }}/.oh-my-zsh/custom/plugins/fzf-tab'
     depth: '1'
     update: false
     version: 'master'
   loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
   when: "'fzf-tab' in zsh_plugins"
 
 - name: "INSTALLING - Plugin: zsh-completions"
+  become: true
+  become_user: "{{ item.username }}"
   ansible.builtin.git:
     repo: "{{ zsh_completions_repo_url }}"
-    dest: '~{{ zsh_plugins_path }}/zsh-completions'
+    dest: '~{{ item.username }}/.oh-my-zsh/custom/plugins/zsh-completions'
     depth: '1'
     update: false
     version: 'master'
   loop: "{{ zsh_users }}"
+  loop_control:
+    label: '{{ item.username }}'
   when: "'zsh-completions' in zsh_plugins"
