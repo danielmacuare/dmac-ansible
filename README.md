@@ -25,20 +25,37 @@ See each role's README for detailed documentation.
 
 ### Prerequisites
 
-1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+0. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+1. Clone the repo: `git clone git@github.com:danielmacuare/dmac-ansible.git`
+
 2. Install Python dependencies:
    ```bash
    uv sync
    ```
+
 3. Install Ansible Galaxy roles:
    ```bash
-   ansible-galaxy install -r requirements.yml -p ./roles
+   uv run ansible-galaxy install -r requirements.yml -p ./roles
    ```
+
 4. Install sshpass (for SSH password authentication):
    ```bash
    sudo apt install sshpass
    ```
-5. Create vault password file at `~/.vault_pass`
+
+5. Create a vault password file at `~/.vault_pass`. Then add the password (plain text) that will be used to encrypt all the ansible-vault files and variables.
+`touch ~/.vault_pass`
+`vim ~/.vault_pass`
+
+6. Copy the example vault file, edit the variables and encrypt the file.
+```bash
+cd inventories/group_vars/all/
+cp example.vault.yaml vault.yaml
+vim vault.yaml
+uv run ansible-vault encrypt vault.yaml --vault-password-file ~/.vault_pass
+```
 
 ### Configuration
 

@@ -3,6 +3,8 @@
 .vscode/
 *.swp
 .kiro/
+*vault*
+!*example.vault.yaml
 
 # External Ansible Galaxy roles (installed via requirements.yml)
 roles/geerlingguy.*/
