@@ -21,6 +21,7 @@
             authorized: "{{ zerotier_authorize_member }}"
         body_format: json
       register: auth_apiresult
+      no_log: true
       # delegate_to: "{{ zerotier_api_delegate }}"
       when:
         - ansible_local['zerotier']['networks'][zerotier_network_id] is not defined or
