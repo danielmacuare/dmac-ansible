@@ -1,8 +1,23 @@
 # Configuration Guide
 
+Complete setup and configuration instructions for the Ansible infrastructure automation repository.
+
+## Prerequisites
+
+- Python 3.12+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) package manager
+- Target systems: Ubuntu 22.04.3+
+
 ## Initial Setup
 
-### 1. Install Dependencies
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/danielmacuare/dmac-ansible.git
+cd dmac-ansible
+```
+
+### 2. Install Dependencies
 
 Install uv package manager:
 ```bash
@@ -22,22 +37,27 @@ uv run ansible-galaxy install -r requirements.yml -p ./roles
 
 This installs external roles like `geerlingguy.docker` to the `./roles` directory.
 
-Install system dependencies:
+Install system dependencies (for SSH password authentication):
 ```bash
 sudo apt install sshpass
 ```
 
-### 2. Configure Vault Password
+### 3. Configure Vault Password
 
-Create a vault password file:
+Create a vault password file at `~/.vault_pass`:
 ```bash
-echo "your-vault-password" > ~/.vault_pass
+touch ~/.vault_pass
 chmod 600 ~/.vault_pass
 ```
 
-This file is referenced in `ansible.cfg` and used to decrypt vault variables.
+Edit the file and add your vault password (plain text):
+```bash
+vim ~/.vault_pass
+```
 
-### 3. Update Inventory
+This file is referenced in `ansible.cfg` and used to encrypt/decrypt vault variables.
+
+### 4. Update Inventory
 
 Edit `inventories/inventory.ini` to define your target hosts:
 ```ini
@@ -50,7 +70,7 @@ ansible_user=your_user
 ansible_python_interpreter=/usr/bin/python3
 ```
 
-### 4. Configure Variables
+### 5. Configure Variables
 
 Edit `inventories/group_vars/all/vars.yaml` to define your configuration.
 
@@ -85,7 +105,7 @@ zsh_users:
       write_zshrc: true
 ```
 
-### 5. Add SSH Public Keys
+### 6. Add SSH Public Keys
 
 Add SSH public keys to `roles/ubuntu/files/`. See [Ubuntu Role - SSH Keys](../roles/ubuntu/README.md#2-ssh-public-keys) for details.
 
@@ -94,41 +114,71 @@ cd roles/ubuntu/files/
 echo "ssh-rsa AAAAB3NzaC1yc2E..." > dmac.pub
 ```
 
-### 6. Configure Vault Variables
+### 7. Configure Vault Variables
 
-Find required vault variables:
+Copy the example vault file:
 ```bash
-grep -r "vault_" inventories/group_vars/all/vars.yaml
+cd inventories/group_vars/all/
+cp example.vault.yaml vault.yaml
 ```
 
-Create the vault file:
+Edit and add your vault variables:
 ```bash
-uv ansible-vault edit inventories/group_vars/all/vault.yaml
+vim vault.yaml
 ```
 
-Add vault variables (see [Password Generation](password-generation.md) for creating password hashes):
+See [Password Generation Guide](password-generation.md) for creating password hashes for users.
+
+Example vault variables:
 ```yaml
 ---
 vault_dmac_ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fVaqzRvj1J4P0sUkRwSgwWNT/3Pbic0Z2gZs4mW6jQPviosCBdmwJ."
 vault_zerotier_api_token: "your-zerotier-api-token"
 ```
 
-### 7. Verify Configuration
+Encrypt the vault file:
+```bash
+uv run ansible-vault encrypt vault.yaml --vault-password-file ~/.vault_pass
+```
+
+Find required vault variables by searching your vars.yaml:
+```bash
+grep -r "vault_" inventories/group_vars/all/vars.yaml
+```
+
+### 8. Verify Configuration
 
 Test connectivity:
 ```bash
-uv ansible all -m ping
+uv run ansible all -m ping
 ```
 
 Check playbook syntax:
 ```bash
-uv ansible-playbook playbooks/ubuntu.yml --syntax-check
+uv run ansible-playbook playbooks/ubuntu.yml --syntax-check
 ```
 
 Run in check mode (dry run):
 ```bash
-uv ansible-playbook playbooks/ubuntu.yml -K --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --check
 ```
+
+## Usage
+
+Run the full playbook:
+```bash
+uv run ansible-playbook playbooks/ubuntu.yml -K
+```
+
+Run specific roles using tags:
+```bash
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags zerotier
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags zsh
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags docker
+```
+
+The `-K` flag prompts for the sudo password on target hosts.
 
 ## Role-Specific Configuration
 

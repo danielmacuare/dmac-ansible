@@ -1,6 +1,6 @@
 # Example File - FAKE CREDS
 vault_auth_dir_key: "/etc/ssh/authorized_keys"
-vault_zerotier_api_accesstoken: "ZEROTIER_API_TOKEN"
+vault_zerotier_api_accesstoken: "Put your Zero Tier API Token HERE"
 # See docs/password-generation.md for instructions on how to generate the password hashes below
 vault_dmac_ssh_pass: "$6$Vqo2MXAAQt6z0KxG$2/XYsLfVbnLRhMveU9YV2lwzxnTRD8gk3jnjKWc894lApaFlJHhAo/m.FV/pqbD3EXV26Iia9otiiKBKTmXDCS"
 vault_svmt_ssh_pass: "$6$U4CbBz7gOuK11hjd$YOtOM6s5ftzqRDr408qsXDnyRBJ4a/lQLFufb1LJM1Q7R9ATcG/CvkybfJhRpaSDb5Z1GdEwsJIvZhyCnnADEX"

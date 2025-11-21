@@ -55,19 +55,19 @@ ansible-lint roles/ubuntu/
 
 Check playbook syntax:
 ```bash
-ansible-playbook playbooks/ubuntu.yml --syntax-check
+uv run ansible-playbook playbooks/ubuntu.yml --syntax-check
 ```
 
 ### Testing
 
 Test in check mode (dry run):
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --check
 ```
 
 Test specific roles:
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu --check
 ```
 
 Test connectivity:
@@ -107,7 +107,7 @@ EOF
 
 4. Test the role:
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --tags newrole --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags newrole --check
 ```
 
 ### Adding a New User
@@ -136,7 +136,7 @@ ansible-vault edit inventories/group_vars/all/vault.yaml
 
 3. Test changes:
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --check
 ```
 
 ## Naming Conventions
@@ -164,13 +164,13 @@ ansible-playbook playbooks/ubuntu.yml -K --check
 Run with increased verbosity:
 ```bash
 # Basic verbose
-ansible-playbook playbooks/ubuntu.yml -K -v
+uv run ansible-playbook playbooks/ubuntu.yml -K -v
 
 # More verbose (shows task results)
-ansible-playbook playbooks/ubuntu.yml -K -vv
+uv run ansible-playbook playbooks/ubuntu.yml -K -vv
 
 # Very verbose (shows connection debugging)
-ansible-playbook playbooks/ubuntu.yml -K -vvv
+uv run ansible-playbook playbooks/ubuntu.yml -K -vvv
 ```
 
 ### Debug Variables
@@ -186,7 +186,7 @@ Add debug tasks:
 
 Test on single host:
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --limit server01
+uv run ansible-playbook playbooks/ubuntu.yml -K --limit server01
 ```
 
 ## Git Workflow
@@ -200,7 +200,7 @@ pre-commit run --all-files
 
 3. Test changes:
 ```bash
-ansible-playbook playbooks/ubuntu.yml -K --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --check
 ```
 
 4. Commit (pre-commit hooks will run automatically):

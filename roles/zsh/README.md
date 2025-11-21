@@ -58,14 +58,14 @@ Run the zsh role:
 
 ```bash
 # Run full zsh role
-ansible-playbook playbooks/ubuntu.yml -K --tags zsh
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags zsh
 
 # Check mode (dry run)
-ansible-playbook playbooks/ubuntu.yml -K --tags zsh --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags zsh --check
 
 # Run specific sub-tasks
-ansible-playbook playbooks/ubuntu.yml -K --tags oh-my-zsh
-ansible-playbook playbooks/ubuntu.yml -K --tags p10k
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags oh-my-zsh
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags p10k
 ```
 
 

@@ -63,13 +63,13 @@ Run the docker role:
 
 ```bash
 # Install role first (if not already installed)
-ansible-galaxy install -r requirements.yml -p ./roles
+uv run ansible-galaxy install -r requirements.yml -p ./roles
 
 # Run docker role
-ansible-playbook playbooks/ubuntu.yml -K --tags docker
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags docker
 
 # Check mode (dry run)
-ansible-playbook playbooks/ubuntu.yml -K --tags docker --check
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags docker --check
 ```
 
 ## Variables Reference
@@ -87,7 +87,7 @@ ansible-playbook playbooks/ubuntu.yml -K --tags docker --check
 
 ### Advanced Variables
 
-For a complete list of variables, see the [official role documentation](https://github.com/geerlingguy/ansible-role-docker).
+uv run For a complete list of variables, see the [official role documentation](https://github.com/geerlingguy/ansible-role-docker).
 
 ## Common Issues
 

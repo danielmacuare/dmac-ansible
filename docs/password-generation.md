@@ -45,7 +45,7 @@ vault_username_ssh_pass: "$6$ckQnPlokpK7pgQ8/$OYVyTArxJMDguRdERhzF0ia9f5YcRiy8fV
 
 Edit the vault file:
 ```bash
-ansible-vault edit inventories/group_vars/all/vault.yaml
+uv run ansible-vault edit inventories/group_vars/all/vault.yaml
 ```
 
 Add the password hash with the correct variable name:

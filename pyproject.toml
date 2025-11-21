@@ -27,9 +27,4 @@ build-backend = "hatchling.build"
 packages = []
 
 [tool.uv]
-dev-dependencies = [
-    "pre-commit>=4.4.0",
-    "ansible-lint>=25.11.0; platform_system != 'Windows'",
-    "djlint>=1.36.4",
-]
 package = false

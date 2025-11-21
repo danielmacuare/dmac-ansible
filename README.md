@@ -2,9 +2,32 @@
 
 Personal Ansible automation repository for managing Ubuntu server configurations.
 
-## Roles
+## Features
 
-This repository includes the following roles:
+- User and group management with SSH key configuration
+- System package installation (apt and snap)
+- ZeroTier VPN network setup and authorization
+- ZSH shell with Oh-My-Zsh and Powerlevel10k theme
+- Docker CE installation and configuration
+
+## Quick Start
+
+See the [Configuration Guide](docs/configuration.md) for complete setup instructions.
+
+```bash
+# Install dependencies
+uv sync
+uv run ansible-galaxy install -r requirements.yml -p ./roles
+
+# Configure inventory and variables
+vim inventories/inventory.ini
+vim inventories/group_vars/all/vars.yaml
+
+# Run playbook
+uv run ansible-playbook playbooks/ubuntu.yml -K
+```
+
+## Roles
 
 ### Custom Roles
 - **[ubuntu](roles/ubuntu/README.md)** - User and group management, SSH keys, APT/Snap packages
@@ -14,84 +37,12 @@ This repository includes the following roles:
 ### External Roles
 - **[geerlingguy.docker](docs/docker-role.md)** - Docker CE installation and configuration
 
-External roles must be installed from Ansible Galaxy:
-```bash
-ansible-galaxy install -r requirements.yml -p ./roles
-```
-
-See each role's README for detailed documentation.
-
-## Quick Start
-
-### Prerequisites
-
-
-0. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
-
-1. Clone the repo: `git clone git@github.com:danielmacuare/dmac-ansible.git`
-
-2. Install Python dependencies:
-   ```bash
-   uv sync
-   ```
-
-3. Install Ansible Galaxy roles:
-   ```bash
-   uv run ansible-galaxy install -r requirements.yml -p ./roles
-   ```
-
-4. Install sshpass (for SSH password authentication):
-   ```bash
-   sudo apt install sshpass
-   ```
-
-5. Create a vault password file at `~/.vault_pass`. Then add the password (plain text) that will be used to encrypt all the ansible-vault files and variables.
-`touch ~/.vault_pass`
-`vim ~/.vault_pass`
-
-6. Copy the example vault file, edit the variables and encrypt the file.
-```bash
-cd inventories/group_vars/all/
-cp example.vault.yaml vault.yaml
-vim vault.yaml
-uv run ansible-vault encrypt vault.yaml --vault-password-file ~/.vault_pass
-```
-
-### Configuration
-
-1. Update inventory: `inventories/inventory.ini`
-2. Configure variables: `inventories/group_vars/all/vars.yaml`
-3. Add SSH public keys to: `roles/ubuntu/files/`
-
-See [Configuration Guide](docs/configuration.md) for detailed setup instructions.
-
-### Usage
-
-Run the full playbook:
-```bash
-ansible-playbook playbooks/ubuntu.yml -K
-```
-
-Run specific roles using tags:
-```bash
-ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu
-ansible-playbook playbooks/ubuntu.yml -K --tags zerotier
-ansible-playbook playbooks/ubuntu.yml -K --tags zsh
-```
-
 ## Documentation
 
-### General Documentation
-- [Configuration Guide](docs/configuration.md) - Initial setup and configuration
-- [Password Generation](docs/password-generation.md) - Generate user password hashes
-- [Development Guide](docs/development.md) - Contributing and development workflow
-- [Docker Role Guide](docs/docker-role.md) - Docker installation and configuration
-
-### Role Documentation
-- [Ubuntu Role](roles/ubuntu/README.md) - User management, SSH, and packages
-- [ZeroTier Role](roles/zerotier/README.md) - VPN network configuration
-- [ZSH Role](roles/zsh/README.md) - Shell configuration and theming
-- [Docker Role](docs/docker-role.md) - Docker CE installation (external role)
+- **[Configuration Guide](docs/configuration.md)** - Complete setup and configuration instructions
+- **[Password Generation](docs/password-generation.md)** - Generate user password hashes
+- **[Development Guide](docs/development.md)** - Contributing and development workflow
+- **[Docker Role Guide](docs/docker-role.md)** - Docker installation and configuration
 
 ## Project Structure
 
