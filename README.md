@@ -1,14 +1,14 @@
 # Ansible Infrastructure Automation
 
-Personal Ansible automation repository for managing Ubuntu server configurations.
+Personal Ansible automation repository for Storing different kinds of playbooks.
 
 ## Features
-
-- User and group management with SSH key configuration
-- System package installation (apt and snap)
-- ZeroTier VPN network setup and authorization
-- ZSH shell with Oh-My-Zsh and Powerlevel10k theme
-- Docker CE installation and configuration
+- Ubuntu Playbook
+    - User and group management with SSH key configuration
+    - System package installation (apt and snap)
+    - ZeroTier VPN network setup and authorization
+    - ZSH shell with Oh-My-Zsh and Powerlevel10k theme
+    - Docker CE installation and configuration
 
 ## Quick Start
 
