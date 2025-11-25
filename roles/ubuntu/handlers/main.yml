@@ -1,7 +1,15 @@
 ---
-- name: "HANDLER - Restart the SSHD Service"
+- name: "HANDLER - Restart the SSH Service"
   become: true
   ansible.builtin.service:
-    name: sshd
+    name: ssh
     state: restarted
   listen: "restart sshd"
+
+- name: "HANDLER - Enable and start snapd service"
+  become: true
+  ansible.builtin.service:
+    name: snapd
+    state: started
+    enabled: true
+  listen: "start snapd"

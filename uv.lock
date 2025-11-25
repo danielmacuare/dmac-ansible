@@ -341,13 +341,6 @@ dev = [
     { name = "pre-commit" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "ansible-lint", marker = "sys_platform != 'win32'" },
-    { name = "djlint" },
-    { name = "pre-commit" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "ansible", specifier = ">=12.2.0" },
@@ -355,13 +348,6 @@ requires-dist = [
     { name = "djlint", marker = "extra == 'dev'", specifier = ">=1.36.4" },
     { name = "passlib", specifier = ">=1.7.4" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.4.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ansible-lint", marker = "sys_platform != 'win32'", specifier = ">=25.11.0" },
-    { name = "djlint", specifier = ">=1.36.4" },
-    { name = "pre-commit", specifier = ">=4.4.0" },
 ]
 
 [[package]]

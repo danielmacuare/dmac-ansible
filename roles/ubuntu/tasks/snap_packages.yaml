@@ -1,4 +1,24 @@
 ---
+- name: "ubuntu | Wait for snapd to be ready"
+  become: true
+  ansible.builtin.command: snap version
+  register: snap_version_check
+  until: snap_version_check.rc == 0
+  retries: 10
+  delay: 3
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/snap/bin"
+
+- name: "ubuntu | Wait for any existing snap operations to complete"
+  become: true
+  ansible.builtin.command: snap changes
+  register: snap_changes
+  until: snap_changes.stdout.find('Doing') == -1 and snap_changes.stdout.find('Undoing') == -1
+  retries: 20
+  delay: 5
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/snap/bin"
+
 - name: "INSTALLING - SNAP Packages"
   become: true
   community.general.snap:
@@ -9,3 +29,7 @@
   loop: "{{ snap_packages }}"
   loop_control:
     label: "Install SNAP Package: {{ item }}"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/snap/bin"
+  async: 1800  # 30 minutes timeout - SNAP Takes ages on installs
+  poll: 10     # Check every 10 seconds

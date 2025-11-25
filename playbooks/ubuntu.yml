@@ -1,9 +1,9 @@
 ---
 - name: Configure Ubuntu Servers
-  hosts: ubuntu-hosts
+  hosts: ubuntu_hosts
   gather_facts: true
   roles:
-    - {role: ubuntu, tags: ['ubuntu']}
-    - {role: zerotier, tags: ['zerotier']}
-    - {role: zsh, tags: ['zsh']}
-    - {role: geerlingguy.docker, tags: ['docker'], become: true}
+    - { role: ubuntu, tags: ["ubuntu"] }
+    - { role: zerotier, tags: ["zerotier"] }
+    - { role: zsh, tags: ["zsh"] }
+    - { role: geerlingguy.docker, tags: ["docker"], become: true }
