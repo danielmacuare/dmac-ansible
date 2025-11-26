@@ -1,9 +1,16 @@
 ---
 - name: "HANDLER - Restart the SSH Service"
   become: true
-  ansible.builtin.service:
-    name: ssh
-    state: restarted
+  ansible.builtin.shell: |
+    if systemctl is-active --quiet ssh.socket; then
+      systemctl restart ssh.socket
+    elif systemctl is-active --quiet ssh; then
+      systemctl restart ssh
+    elif systemctl is-active --quiet sshd; then
+      systemctl restart sshd
+    else
+      echo "No SSH service found to restart"
+    fi
   listen: "restart sshd"
 
 - name: "HANDLER - Enable and start snapd service"
