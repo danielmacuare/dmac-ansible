@@ -27,16 +27,19 @@ apt_packages:
   - ripgrep
   - zoxide
   - jq
-  - nala
   - fzf
   - tldr
   - duf
-  - snapd
+  - tcpdump
 
 snap_packages:
-  - name: spt
-    classic: true
+  - name: rustscan # NMAP Faster Alternative
+    classic: false
     version: "latest/stable"
+  - name: termshark # Wireshark-like TUI
+    classic: false
+    version: "latest/stable"
+
 
 # ZEROTIER ROLE
 zerotier_api_accesstoken: "{{ vault_zerotier_api_accesstoken }}"
