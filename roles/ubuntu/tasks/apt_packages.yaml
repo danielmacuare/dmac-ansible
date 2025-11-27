@@ -7,15 +7,3 @@
   loop: "{{ apt_packages }}"
   loop_control:
     label: "Install APT Package: {{ item }}"
-  notify: "start snapd"
-  when: item == "snapd"
-
-- name: "INSTALLING - APT Packages (non-snapd)"
-  become: true
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ apt_packages }}"
-  loop_control:
-    label: "Install APT Package: {{ item }}"
-  when: item != "snapd"

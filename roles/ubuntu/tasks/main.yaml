@@ -12,9 +12,6 @@
   ansible.builtin.include_tasks: apt_packages.yaml
   when: "apt_packages is defined"
 
-- name: "ubuntu | Flush handlers to ensure snapd is ready"
-  ansible.builtin.meta: flush_handlers
-
 - name: "Including Task: snap_packages.yaml"
   ansible.builtin.include_tasks: snap_packages.yaml
   when: "snap_packages is defined"

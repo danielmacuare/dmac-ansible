@@ -6,7 +6,7 @@ Complete setup and configuration instructions for the Ansible infrastructure aut
 
 - Python 3.12+
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) package manager
-- Target systems: Ubuntu 22.04.3+
+- Target systems: Ubuntu 22.04+
 
 ## Initial Setup
 
@@ -37,10 +37,12 @@ uv run ansible-galaxy install -r requirements.yml -p ./roles
 
 This installs external roles like `geerlingguy.docker` to the `./roles` directory.
 
-Install system dependencies (for SSH password authentication):
+Install system dependencies (optional - only needed for SSH password authentication):
 ```bash
 sudo apt install sshpass
 ```
+
+**Note:** `sshpass` is only required if you need to use password-based SSH authentication. If you're using SSH keys exclusively, you can skip this step.
 
 ### 3. Configure Vault Password
 

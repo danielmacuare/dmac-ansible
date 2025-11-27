@@ -1,4 +1,14 @@
 ---
+- name: "ubuntu | Install snapd"
+  become: true
+  ansible.builtin.package:
+    name: snapd
+    state: present
+  notify: "start snapd"
+
+- name: "ubuntu | Flush handlers to start snapd"
+  ansible.builtin.meta: flush_handlers
+
 - name: "ubuntu | Wait for snapd to be ready"
   become: true
   ansible.builtin.command: snap version

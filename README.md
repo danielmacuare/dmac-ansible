@@ -64,7 +64,7 @@ uv run ansible-playbook playbooks/ubuntu.yml -K
 - Python 3.12+
 - Ansible 12.2.0+
 - uv package manager
-- Target systems: Ubuntu 22.04.3+
+- Target systems: Ubuntu 22.04+
 
 ## License
 

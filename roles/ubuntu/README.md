@@ -17,6 +17,8 @@ This role is designed for Ubuntu 22.04.3+ and handles the foundational setup for
 
 1. **User Management**: Creates system users with specified privileges
 2. **SSH Configuration**: Sets up SSH keys and authorized_keys for secure access
+   - Uses `/etc/ssh/ssh_config.d/99-ansible-managed.conf` (Ubuntu 22.04+)
+   - Follows modern directory-based SSH configuration approach
 3. **Sudo Access**: Configures sudo permissions for specified users
 4. **Package Installation**: Installs APT and Snap packages
 5. **Shell Customization**: Deploys user-specific aliases and functions
