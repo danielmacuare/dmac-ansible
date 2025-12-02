@@ -44,7 +44,7 @@
   become: true
   ansible.builtin.template:
     src: sshd_config.j2
-    dest: /etc/ssh/ssh_config.d/99-ansible-managed.conf
+    dest: /etc/ssh/sshd_config.d/99-ansible-managed.conf
     backup: true
     owner: root
     group: root
