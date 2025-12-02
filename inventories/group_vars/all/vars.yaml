@@ -40,6 +40,9 @@ snap_packages:
   - name: termshark # Wireshark-like TUI
     classic: false
     version: "latest/stable"
+  - name: btop # top alternative
+    classic: false
+    version: "latest/stable"
 
 
 # ZEROTIER ROLE
