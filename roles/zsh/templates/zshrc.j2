@@ -1,5 +1,6 @@
 # {{ ansible_managed }}
 
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -61,3 +62,5 @@ export EDITOR="/usr/bin/vim"
 ## FZF with BATCAT Preview for files (To be Fixed)
 export FZF_DEFAULT_OPTS="--multi --preview-window 'right:60%' --preview 'batcat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_COMPLETION_TRIGGER='LL'
+# Add snap to PATH if it exists
+[ -d /snap/bin ] && export PATH="/snap/bin:$PATH"
