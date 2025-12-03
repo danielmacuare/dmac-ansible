@@ -19,7 +19,6 @@ users:
     custom_functions_file: "functions_svmt.j2"
 
 apt_packages:
-  - neovim
   - whois
   - sshpass
   - nmap
@@ -41,6 +40,9 @@ snap_packages:
     version: "latest/stable"
   - name: termshark # Wireshark-like TUI
     classic: false
+    version: "latest/stable"
+  - name: nvim
+    classic: true
     version: "latest/stable"
 
 
@@ -106,3 +108,10 @@ docker_compose_path: /usr/local/bin/docker-compose
 docker_users:
   - dmac
   - svmt
+
+
+# NEOVIM ROLE
+neovim_set_default_editor: true
+neovim_deploy_config: true
+neovim_users:
+  - username: dmac

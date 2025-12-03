@@ -1,0 +1,72 @@
+---
+- name: "CHECKING | If Node.js is already installed"
+  ansible.builtin.command: node --version
+  register: node_check
+  failed_when: false
+  changed_when: false
+
+- name: "INSTALLING | Node.js from NodeSource"
+  become: true
+  ansible.builtin.shell: |
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+    apt-get install -y nodejs
+  args:
+    creates: /usr/bin/node
+  when: node_check.rc != 0
+
+- name: "INSTALLING | Other Neovim dependencies"
+  become: true
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ neovim_dependencies }}"
+  loop_control:
+    label: "Install Neovim dependency: {{ item }}"
+
+- name: "INSTALLING | Neovim via Snap"
+  become: true
+  community.general.snap:
+    name: nvim
+    classic: true
+    channel: latest/stable
+    state: present
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/snap/bin"
+  async: 1800  # 30 minutes timeout
+  poll: 10     # Check every 10 seconds
+  retries: 3
+  delay: 5
+
+- name: "SETTING UP | Neovim as default editor"
+  become: true
+  ansible.builtin.alternatives:
+    name: editor
+    path: /snap/bin/nvim
+  when: neovim_set_default_editor | default(true)
+
+- name: "CREATING | .config directory for users"
+  become: true
+  ansible.builtin.file:
+    path: "/home/{{ item.username }}/.config"
+    state: directory
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: "0755"
+  loop: "{{ neovim_users }}"
+  when: 
+    - neovim_users is defined
+    - neovim_deploy_config | default(false)
+
+- name: "DEPLOYING | Neovim config directory for users"
+  become: true
+  ansible.builtin.copy:
+    src: nvim/
+    dest: "/home/{{ item.username }}/.config/nvim/"
+    owner: "{{ item.username }}"
+    group: "{{ item.username }}"
+    mode: preserve
+    directory_mode: "0755"
+  loop: "{{ neovim_users }}"
+  when: 
+    - neovim_users is defined
+    - neovim_deploy_config | default(false)

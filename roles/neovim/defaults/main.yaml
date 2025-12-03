@@ -1,0 +1,20 @@
+---
+# Set Neovim as default editor
+neovim_set_default_editor: true
+
+# Deploy custom Neovim config
+neovim_deploy_config: false
+
+# Users to configure Neovim for
+neovim_users: []
+
+# Dependencies for Neovim plugins (compiling native modules)
+# Note: Node.js is installed via snap for latest stable version
+neovim_dependencies:
+  - build-essential  # GCC, make, etc for compiling
+  - luarocks         # Lua package manager
+  - lua5.1           # Lua runtime
+  - python3-pip      # Python package installer
+  - python3-venv     # Python virtual environments
+  - default-jdk      # Java Development Kit (for Java LSP)
+  - php-cli          # PHP command line (for PHP LSP)
