@@ -8,6 +8,7 @@ Personal Ansible automation repository for Storing different kinds of playbooks.
     - System package installation (apt and snap)
     - ZeroTier VPN network setup and authorization
     - ZSH shell with Oh-My-Zsh and Powerlevel10k theme
+    - Neovim with full plugin support (LSP, Mason, lazy.nvim)
     - Docker CE installation and configuration
 
 ## Quick Start
@@ -33,6 +34,7 @@ uv run ansible-playbook playbooks/ubuntu.yml -K
 - **[ubuntu](roles/ubuntu/README.md)** - User and group management, SSH keys, APT/Snap packages
 - **[zerotier](roles/zerotier/README.md)** - ZeroTier VPN network setup and authorization
 - **[zsh](roles/zsh/README.md)** - ZSH shell with Oh-My-Zsh and Powerlevel10k theme
+- **[neovim](roles/neovim/README.md)** - Neovim with LSP, Mason, and full plugin support using Lazy.
 
 ### External Roles
 - **[geerlingguy.docker](docs/docker-role.md)** - Docker CE installation and configuration
@@ -43,6 +45,7 @@ uv run ansible-playbook playbooks/ubuntu.yml -K
 - **[Password Generation](docs/password-generation.md)** - Generate user password hashes
 - **[Development Guide](docs/development.md)** - Contributing and development workflow
 - **[Docker Role Guide](docs/docker-role.md)** - Docker installation and configuration
+- **[Neovim Role Guide](roles/neovim/README.md)** - Neovim installation and configuration
 
 ## Project Structure
 
@@ -55,7 +58,8 @@ uv run ansible-playbook playbooks/ubuntu.yml -K
 ├── roles/                   # Ansible roles (see role READMEs for details)
 │   ├── ubuntu/             # Base system configuration
 │   ├── zerotier/           # VPN networking
-│   └── zsh/                # Shell configuration
+│   ├── zsh/                # Shell configuration
+│   └── neovim/             # Neovim editor with plugins
 └── ansible.cfg             # Ansible configuration
 ```
 
