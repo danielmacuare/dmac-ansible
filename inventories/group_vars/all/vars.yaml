@@ -30,6 +30,8 @@ apt_packages:
   - fzf
   - tldr
   - duf
+  - btop
+  - tree
   - tcpdump
   - openssh-server # ORB VMs won't install it by default
 
@@ -38,9 +40,6 @@ snap_packages:
     classic: false
     version: "latest/stable"
   - name: termshark # Wireshark-like TUI
-    classic: false
-    version: "latest/stable"
-  - name: btop # top alternative
     classic: false
     version: "latest/stable"
 
