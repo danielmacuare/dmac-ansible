@@ -62,5 +62,8 @@ export EDITOR="/usr/bin/vim"
 ## FZF with BATCAT Preview for files (To be Fixed)
 export FZF_DEFAULT_OPTS="--multi --preview-window 'right:60%' --preview 'batcat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_COMPLETION_TRIGGER='LL'
+
+# Initialize zoxide (smart cd replacement)
+command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 # Add snap to PATH if it exists
 [ -d /snap/bin ] && export PATH="/snap/bin:$PATH"
