@@ -1,22 +1,36 @@
 # {{ ansible_managed }}
 
-mkd () {
-mkdir "$1"
-cd "$1"
+# Create directory and cd into it
+mkd() {
+    mkdir -p "$1"
+    cd "$1"
 }
 
-gacp () {
-git add .
-git commit -a -m "$1"
-git push
+# Git add, commit, and push
+gacp() {
+    git add .
+    git commit -a -m "$1"
+    git push
 }
 
-gac () {
-git add .
-git commit -a -m "$1"
+# Git add and commit
+gac() {
+    git add .
+    git commit -a -m "$1"
 }
 
-gcmp () {
-git commit -a -m "$1"
-git push
+# Git commit and push
+gcmp() {
+    git commit -a -m "$1"
+    git push
+}
+
+# FZF explorer
+xp() {
+    if [ ! -z "$1" ]; then
+        current_directory="$1"
+    else
+        current_directory='.'
+    fi
+    source "$HOME/custom_scripts/fzf_explorer.sh"
 }

@@ -25,45 +25,39 @@ zstyle ':omz:update' mode auto
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Custom Sources
-source $HOME/.aliases
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-
-source "$ZSH/oh-my-zsh.sh"
-source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme"
-#source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
-#source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
-
+# Plugins to load
 plugins=(
     zsh-autosuggestions
     fast-syntax-highlighting
     fzf-tab
+    zsh-completions
 )
 
-# Source Oh My Zsh
-# This runs compinit and loads the plugins above.
+# Add zsh-completions to fpath
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+
+# Source Oh My Zsh (loads theme and plugins)
 source "$ZSH/oh-my-zsh.sh"
 
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# FZF key bindings and completion (if available)
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
+[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
+
+# Custom aliases
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+
+# Custom functions
+[ -f "$HOME/.custom_functions" ] && source "$HOME/.custom_functions"
 
 # ZSH Autosuggestions
-typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=154'
+typeset -g ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=248'
 bindkey '`' autosuggest-execute
-bindkey '\e + w' autosuggest-accept
+bindkey '\el' autosuggest-accept
+bindkey '\eh' forward-word
+
 
 # Custom Exports
 export EDITOR="/usr/bin/vim"
 ## FZF with BATCAT Preview for files (To be Fixed)
 export FZF_DEFAULT_OPTS="--multi --preview-window 'right:60%' --preview 'batcat --color=always --style=header,grid --line-range :300 {}'"
 export FZF_COMPLETION_TRIGGER='LL'
-
-## Custom Functions (To be taken out of here)
-funct xp () {
-    if [ ! -z $1 ]; then
-        current_directory=$1
-    else
-        current_directory='.'
-    fi
-    source $HOME/custom_scripts/fzf_explorer.sh
-}
