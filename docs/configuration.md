@@ -80,6 +80,7 @@ For detailed variable configuration for each role, see:
 - [Ubuntu Role - Required Inputs](../roles/ubuntu/README.md#required-inputs)
 - [ZeroTier Role - Required Inputs](../roles/zerotier/README.md#required-inputs)
 - [ZSH Role - Required Inputs](../roles/zsh/README.md#required-inputs)
+- [Neovim Role - Variables](../roles/neovim/README.md#variables)
 
 Basic example:
 ```yaml
@@ -105,6 +106,12 @@ zsh_users:
   - username: dmac
     oh_my_zsh:
       write_zshrc: true
+
+# Neovim (optional - see Neovim role docs)
+neovim_set_default_editor: true
+neovim_deploy_config: true
+neovim_users:
+  - username: dmac
 ```
 
 ### 6. Add SSH Public Keys
@@ -177,6 +184,7 @@ Run specific roles using tags:
 uv run ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu
 uv run ansible-playbook playbooks/ubuntu.yml -K --tags zerotier
 uv run ansible-playbook playbooks/ubuntu.yml -K --tags zsh
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags neovim
 uv run ansible-playbook playbooks/ubuntu.yml -K --tags docker
 ```
 
@@ -190,6 +198,7 @@ For detailed configuration instructions for each role, see:
 - **[Ubuntu Role Documentation](../roles/ubuntu/README.md)** - User management, SSH keys, and package installation
 - **[ZeroTier Role Documentation](../roles/zerotier/README.md)** - VPN network setup and authorization
 - **[ZSH Role Documentation](../roles/zsh/README.md)** - Shell configuration with Oh-My-Zsh and Powerlevel10k
+- **[Neovim Role Documentation](../roles/neovim/README.md)** - Neovim installation and configuration with plugin dependencies
 
 ### External Roles
 - **[Docker Role Documentation](docker-role.md)** - Docker CE installation and configuration

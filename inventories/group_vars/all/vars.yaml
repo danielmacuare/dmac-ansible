@@ -71,7 +71,7 @@ zsh_plugins:
 
 zsh_plugins_path: "{{ item.username }}/.oh-my-zsh/custom/plugins"
 
-# Docker Role
+# DOCKER ROLE
 docker_edition: 'ce'
 docker_packages:
   - "docker-{{ docker_edition }}"

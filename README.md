@@ -11,6 +11,12 @@ Personal Ansible automation repository for storing different kinds of automation
     - Neovim with full plugin support (LSP, Mason, lazy.nvim)
     - Docker CE installation and configuration
 
+## Requirements
+
+- Python 3.12+
+- [UV package manager](https://docs.astral.sh/uv/getting-started/installation/)
+- git client
+
 ## Quick Start
 
 See the [Configuration Guide](docs/configuration.md) for complete setup instructions.
@@ -119,12 +125,6 @@ Each role is self-contained and can be used independently or combined with other
 └── ansible.cfg             # Ansible configuration
 ```
 
-## Requirements
-
-- Python 3.12+
-- Ansible 12.2.0+
-- uv package manager
-- Target systems: Ubuntu 22.04+
 
 ## License
 
