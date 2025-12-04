@@ -16,6 +16,11 @@ Personal Ansible automation repository for storing different kinds of automation
 See the [Configuration Guide](docs/configuration.md) for complete setup instructions.
 
 ```bash
+
+# Clone this repo
+git clone https://github.com/danielmacuare/dmac-ansible.git
+cd dmac-ansible
+
 # Install dependencies
 uv sync
 uv run ansible-galaxy install -r requirements.yml -p ./roles
