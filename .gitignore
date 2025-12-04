@@ -5,6 +5,7 @@
 .kiro/
 *vault*
 !*example.vault.yaml
+.ansible/
 
 # External Ansible Galaxy roles (installed via requirements.yml)
 roles/geerlingguy.*/

@@ -12,8 +12,8 @@
 - name: "WAITING | For snapd to be ready"
   become: true
   ansible.builtin.command: snap version
-  register: snap_version_check
-  until: snap_version_check.rc == 0
+  register: ubuntu_snap_version_check
+  until: ubuntu_snap_version_check.rc == 0
   retries: 10
   delay: 3
   environment:
@@ -22,8 +22,8 @@
 - name: "WAITING | For any existing snap operations to complete"
   become: true
   ansible.builtin.command: snap changes
-  register: snap_changes
-  until: snap_changes.stdout.find('Doing') == -1 and snap_changes.stdout.find('Undoing') == -1
+  register: ubuntu_snap_changes
+  until: ubuntu_snap_changes.stdout.find('Doing') == -1 and ubuntu_snap_changes.stdout.find('Undoing') == -1
   retries: 20
   delay: 5
   environment:

@@ -1,18 +1,20 @@
 ---
 - name: "CHECKING | If Node.js is already installed"
   ansible.builtin.command: node --version
-  register: node_check
+  register: neovim_node_check
   failed_when: false
   changed_when: false
 
 - name: "INSTALLING | Node.js from NodeSource"
   become: true
   ansible.builtin.shell: |
+    set -o pipefail
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
     apt-get install -y nodejs
   args:
+    executable: /bin/bash
     creates: /usr/bin/node
-  when: node_check.rc != 0
+  when: neovim_node_check.rc != 0
 
 - name: "INSTALLING | Other Neovim dependencies"
   become: true
@@ -39,7 +41,7 @@
 
 - name: "SETTING UP | Neovim as default editor"
   become: true
-  ansible.builtin.alternatives:
+  community.general.alternatives:
     name: editor
     path: /snap/bin/nvim
   when: neovim_set_default_editor | default(true)
@@ -53,7 +55,7 @@
     group: "{{ item.username }}"
     mode: "0755"
   loop: "{{ neovim_users }}"
-  when: 
+  when:
     - neovim_users is defined
     - neovim_deploy_config | default(false)
 
@@ -67,6 +69,6 @@
     mode: preserve
     directory_mode: "0755"
   loop: "{{ neovim_users }}"
-  when: 
+  when:
     - neovim_users is defined
     - neovim_deploy_config | default(false)

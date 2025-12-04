@@ -20,7 +20,7 @@
           config:
             authorized: "{{ zerotier_authorize_member }}"
         body_format: json
-      register: auth_apiresult
+      register: zerotier_auth_apiresult
       no_log: true
       # delegate_to: "{{ zerotier_api_delegate }}"
       when:
