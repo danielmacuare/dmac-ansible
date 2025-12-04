@@ -28,11 +28,11 @@ vim inventories/group_vars/all/vars.yaml
 uv run ansible-playbook playbooks/ubuntu.yml -K
 
 # Run specific roles
-ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu
-ansible-playbook playbooks/ubuntu.yml -K --tags zerotier
-ansible-playbook playbooks/ubuntu.yml -K --tags zsh
-ansible-playbook playbooks/ubuntu.yml -K --tags neovim
-ansible-playbook playbooks/ubuntu.yml -K --tags docker
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags zerotier
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags zsh
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags neovim
+uv run ansible-playbook playbooks/ubuntu.yml -K --tags docker
 ```
 
 ## Roles
