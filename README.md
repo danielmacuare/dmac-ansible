@@ -1,6 +1,6 @@
 # Ansible Infrastructure Automation
 
-Personal Ansible automation repository for Storing different kinds of playbooks.
+Personal Ansible automation repository for storing different kinds of automation workflows.
 
 ## Features
 - Ubuntu Playbook
@@ -26,18 +26,69 @@ vim inventories/group_vars/all/vars.yaml
 
 # Run playbook
 uv run ansible-playbook playbooks/ubuntu.yml -K
+
+# Run specific roles
+ansible-playbook playbooks/ubuntu.yml -K --tags ubuntu
+ansible-playbook playbooks/ubuntu.yml -K --tags zerotier
+ansible-playbook playbooks/ubuntu.yml -K --tags zsh
+ansible-playbook playbooks/ubuntu.yml -K --tags neovim
+ansible-playbook playbooks/ubuntu.yml -K --tags docker
 ```
 
 ## Roles
 
-### Custom Roles
+This repository uses **modular, reusable roles** that can be combined in different playbooks based on your needs.
+
+### Design Philosophy
+
+Each role is self-contained and can be used independently or combined with others. This allows you to:
+- Mix and match roles for different server types
+- Maintain consistent configuration across environments
+- Reuse roles across multiple playbooks
+
+### Role Overview
+
+![Roles Description](docs/media/roles-description.png)
+
+#### Custom Roles
 - **[ubuntu](roles/ubuntu/README.md)** - User and group management, SSH keys, APT/Snap packages
 - **[zerotier](roles/zerotier/README.md)** - ZeroTier VPN network setup and authorization
 - **[zsh](roles/zsh/README.md)** - ZSH shell with Oh-My-Zsh and Powerlevel10k theme
 - **[neovim](roles/neovim/README.md)** - Neovim with LSP, Mason, and full plugin support using Lazy.
 
-### External Roles
+#### External Roles
 - **[geerlingguy.docker](docs/docker-role.md)** - Docker CE installation and configuration
+
+### Example Playbook Combinations
+
+**Web Server:**
+```yaml
+- name: Configure Web Server
+  hosts: webservers
+  roles:
+    - {role: ubuntu, tags: ['ubuntu']}
+    - {role: zsh, tags: ['zsh']}
+    - {role: geerlingguy.docker, tags: ['docker']}
+```
+
+**Development Machine:**
+```yaml
+- name: Configure Dev Environment
+  hosts: dev_machines
+  roles:
+    - {role: ubuntu, tags: ['ubuntu']}
+    - {role: zerotier, tags: ['zerotier']}
+    - {role: zsh, tags: ['zsh']}
+    - {role: neovim, tags: ['neovim']}
+```
+
+**Minimal Server:**
+```yaml
+- name: Configure Minimal Server
+  hosts: minimal_servers
+  roles:
+    - {role: ubuntu, tags: ['ubuntu']}
+```
 
 ## Documentation
 

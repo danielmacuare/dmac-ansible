@@ -1,15 +1,15 @@
 ---
-- name: "ubuntu | Install snapd"
+- name: "INSTALLING | snapd"
   become: true
   ansible.builtin.package:
     name: snapd
     state: present
   notify: "start snapd"
 
-- name: "ubuntu | Flush handlers to start snapd"
+- name: "Flushing | Handlers to start snapd"
   ansible.builtin.meta: flush_handlers
 
-- name: "ubuntu | Wait for snapd to be ready"
+- name: "WAITING | For snapd to be ready"
   become: true
   ansible.builtin.command: snap version
   register: snap_version_check
@@ -19,7 +19,7 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:/snap/bin"
 
-- name: "ubuntu | Wait for any existing snap operations to complete"
+- name: "WAITING | For any existing snap operations to complete"
   become: true
   ansible.builtin.command: snap changes
   register: snap_changes
