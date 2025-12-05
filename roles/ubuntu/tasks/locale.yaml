@@ -1,0 +1,21 @@
+---
+- name: "CHECKING - locale package is installed"
+  become: true
+  ansible.builtin.package:
+    name: locales
+    state: present
+
+- name: "GENERATING - locales"
+  become: true
+  community.general.locale_gen:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ ubuntu_locales }}"
+  loop_control:
+    label: "Generate locale: {{ item }}"
+
+- name: "SETTING - default locale"
+  become: true
+  ansible.builtin.command: update-locale LANG={{ ubuntu_default_locale }} LC_ALL={{ ubuntu_default_locale }}
+  changed_when: true
+  when: ubuntu_default_locale is defined

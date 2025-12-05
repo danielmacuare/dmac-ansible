@@ -1,9 +1,8 @@
-# Create users
-# Create Groups
-# Install Apps
-# Tested on Ubuntu 22.04.3
-
 ---
+- name: "Including Task: locale.yaml"
+  ansible.builtin.include_tasks: locale.yaml
+  when: "ubuntu_locales is defined"
+
 - name: "Including Task: apt_packages.yaml"
   ansible.builtin.include_tasks: apt_packages.yaml
   when: "apt_packages is defined"

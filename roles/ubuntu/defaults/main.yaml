@@ -1,0 +1,7 @@
+---
+# Locale configuration
+ubuntu_locales:
+  - en_US.UTF-8
+  - en_GB.UTF-8
+
+ubuntu_default_locale: en_GB.UTF-8
