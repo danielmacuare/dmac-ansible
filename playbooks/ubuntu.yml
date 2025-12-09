@@ -1,6 +1,7 @@
 ---
 - name: Configure Ubuntu Development Servers
-  hosts: ubuntu_hosts
+  hosts: proxmox
+  #hosts: ubuntu_hosts
   gather_facts: true
   roles:
     - { role: ubuntu, tags: ["ubuntu"] }
