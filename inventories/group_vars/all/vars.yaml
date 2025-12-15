@@ -33,6 +33,7 @@ apt_packages:
   - tree
   - tcpdump
   - openssh-server # ORB VMs won't install it by default
+  - lsd
 
 snap_packages:
   - name: rustscan # NMAP Faster Alternative
