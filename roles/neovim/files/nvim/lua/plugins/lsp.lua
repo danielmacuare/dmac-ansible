@@ -218,7 +218,16 @@ return { -- LSP Configuration & Plugins
       bashls = {},
       graphql = {},
       cssls = {},
-      ltex = {},
+      ltex = {
+        filetypes = { 'latex', 'tex', 'bib' },
+        settings = {
+          ltex = {
+            language = 'en-US',
+            -- Only enable for LaTeX files
+            enabled = { 'latex', 'tex', 'bib' },
+          },
+        },
+      },
       texlab = {},
     }
 
