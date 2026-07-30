@@ -33,7 +33,8 @@ apt_packages:
   - tree
   - tcpdump
   - openssh-server # ORB VMs won't install it by default
-  - lsd
+  # LSD is not available anymore via APT for Ub 24.04
+  #- lsd
 
 snap_packages:
   - name: rustscan # NMAP Faster Alternative
@@ -42,7 +43,6 @@ snap_packages:
   - name: termshark # Wireshark-like TUI
     classic: false
     version: "latest/stable"
-
 
 # ZEROTIER ROLE
 zerotier_api_accesstoken: "{{ vault_zerotier_api_accesstoken }}"
@@ -73,7 +73,7 @@ zsh_plugins:
 zsh_plugins_path: "{{ item.username }}/.oh-my-zsh/custom/plugins"
 
 # DOCKER ROLE
-docker_edition: 'ce'
+docker_edition: "ce"
 docker_packages:
   - "docker-{{ docker_edition }}"
   - "docker-{{ docker_edition }}-cli"
@@ -107,6 +107,12 @@ docker_users:
   - dmac
   - svmt
 
+# Docker daemon options, rendered to /etc/docker/daemon.json
+docker_daemon_options:
+  log-driver: "json-file"
+  log-opts:
+    max-size: "50m"
+    max-file: "3"
 
 # NEOVIM ROLE
 neovim_set_default_editor: true
